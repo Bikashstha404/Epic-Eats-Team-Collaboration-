@@ -84,7 +84,7 @@
              </div>
              <div class="flex-shrink-0">
                  <div class="">
-                     <a href="{{ route('admin.forget_password') }}" class="text-muted">Forgot password?</a>
+                     <a href="{{ route('client.forget_password') }}" class="text-muted">Forgot password?</a>
                  </div>
              </div>
          </div>
@@ -140,7 +140,7 @@
                                  </div>
                              </div>
                              <div class="mt-4 mt-md-5 text-center">
-                                 <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> EasyLearing   . Crafted with <i class="mdi mdi-heart text-danger"></i> by EasyLearing</p>
+                                 <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Food   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Food</p>
                              </div>
                          </div>
                      </div>
