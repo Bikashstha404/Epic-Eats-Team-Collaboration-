@@ -49,7 +49,11 @@ Route::middleware('client')->group(function () {
     
 });
 Route::get('/client/login', [ClientController::class, 'ClientLogin'])->name('client.login');
-Route::get('/client/register', [ClientController::class, 'ClientRegister'])->name('client.register');  
-Route::post('/client/register/submit', [ClientController::class, 'ClientRegisterSubmit'])->name('client.register.submit');
 Route::post('/client/login_submit', [ClientController::class, 'ClientLoginSubmit'])->name('client.login_submit');
 Route::get('/client/logout', [ClientController::class, 'ClientLogout'])->name('client.logout');
+Route::get('/client/forget_password', [ClientController::class, 'ClientForgetPassword'])->name('client.forget_password');
+Route::post('/client/password_submit', [ClientController::class, 'ClientPasswordSubmit'])->name('client.password_submit');  
+Route::get('/client/reset-password/{token}/{email}', [ClientController::class, 'ClientResetPassword']);
+Route::post('/client/reset_password_submit', [ClientController::class, 'ClientResetPasswordSubmit'])->name('client.reset_password_submit');  
+Route::get('/client/register', [ClientController::class, 'ClientRegister'])->name('client.register');  
+Route::post('/client/register/submit', [ClientController::class, 'ClientRegisterSubmit'])->name('client.register.submit');
