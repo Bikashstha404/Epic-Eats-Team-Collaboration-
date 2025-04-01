@@ -129,7 +129,7 @@
                   <p class="sub-text">A Flavor Race, in One Place!</p>
                   <h3 class="login-heading">Welcome Owner!</h3>
                   
-                  <form method="POST" action="{{ route('login') }}">
+                  <form method="POST" action="{{ route('client.login_submit') }}">
                      @csrf
 
                      <!-- Email Field -->

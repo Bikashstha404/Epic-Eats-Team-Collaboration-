@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Owner Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+   <!-- Bootstrap core CSS -->
+   <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -37,7 +42,7 @@
 
     .logo {
       width: 100px;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
       transition: transform 0.3s ease;
     }
 
@@ -141,6 +146,18 @@
       z-index: 1;
     }
 
+    .error-message {
+      color: #FF3E3E;
+      font-size: 14px;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .error-message i {
+      margin-right: 5px;
+    }
+
     @media (max-width: 991px) {
       .row {
         flex-direction: column;
@@ -167,65 +184,85 @@
     }
   </style>
 </head>
+
 <body>
 
-<form class="mt-4 pt-2" action="{{ route('client.register.submit') }}" method="post">
-  @csrf
+  <form class="mt-4 pt-2" action="{{ route('client.register.submit') }}" method="post">
+    @csrf
 
-  <div class="main-container">
-    <!-- Logo -->
-    <div class="logo-wrapper">
-      <img src="{{ asset('frontend/img/logo.png') }}" class="logo" alt="EpicEats Logo">
-    </div>
-
-    <div class="row">
-      <!-- Left Column -->
-      <div class="form-column">
-        <div class="heading-wrapper">
-          <h2 class="form-title">Owner Registration</h2>
-          <h4 class="form-subtitle">Welcome !</h4>
-        </div>
-
-        <div class="form-group">
-          <label for="restaurant_name">Restaurant Name</label>
-          <input type="text" id="restaurant_name" name="restaurant_name" placeholder="Enter restaurant name">
-        </div>
-
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="text" id="phone" name="phone" placeholder="Enter phone number">
-        </div>
-
-        <div class="form-group">
-          <label for="address">Address</label>
-          <input type="text" id="address" name="address" placeholder="Enter address">
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="Enter email address">
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="Enter password">
-        </div>
-
-        <div class="form-group">
-          <label for="confirm_password">Confirm Your Password</label>
-          <input type="password" id="confirm_password" name="password_confirmation" placeholder="Confirm password">
-        </div>
-
-        <button type="submit" class="btn">Sign Up</button>
+    <div class="main-container">
+      <!-- Logo -->
+      <div class="logo-wrapper">
+        <img src="{{ asset('frontend/img/logo.png') }}" class="logo" alt="EpicEats Logo">
       </div>
 
-      <!-- Right Column -->
-      <div class="image-column">
-        <img src="{{ asset('frontend/img/register-illustration.png') }}" class="illustration" alt="Registration Illustration">
+      <div class="row">
+        <!-- Left Column -->
+        <div class="form-column">
+          <div class="heading-wrapper">
+            <h2 class="form-title">Owner Registration</h2>
+            <h4 class="form-subtitle">Welcome !</h4>
+          </div>
+
+          <div class="form-group">
+            <label for="restaurant_name">Restaurant Name</label>
+            <input type="text" id="restaurant_name" name="restaurant_name" value="{{ old('restaurant_name') }}" placeholder="Enter restaurant name">
+            @error('restaurant_name')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Enter phone number">
+            @error('phone')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" value="{{ old('address') }}" placeholder="Enter address">
+            @error('address')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter email address">
+            @error('email')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter password">
+            @error('password')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
+          </div>
+
+          <div class="form-group">
+            <label for="password_confirmation">Confirm Your Password</label>
+            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm password">
+            @error('password_confirmation')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
+          </div>
+
+          <button type="submit" class="btn">Sign Up</button>
+        </div>
+
+        <!-- Right Column -->
+        <div class="image-column">
+          <img src="{{ asset('frontend/img/register-illustration.png') }}" class="illustration" alt="Registration Illustration">
+        </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
 
 </body>
+
 </html>
