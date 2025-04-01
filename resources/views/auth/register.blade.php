@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Registration</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -36,8 +41,9 @@
     }
 
     .logo {
-      width: 100px; /* Increased from 80px */
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+      width: 100px;
+      /* Increased from 80px */
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
       transition: transform 0.3s ease;
     }
 
@@ -119,7 +125,8 @@
       transition: all 0.3s ease;
       letter-spacing: 0.5px;
       display: block;
-      margin: 20px auto; /* ✅ Centered */
+      margin: 20px auto;
+      /* ✅ Centered */
     }
 
     .btn:hover {
@@ -139,6 +146,18 @@
       max-width: 100%;
       height: auto;
       z-index: 1;
+    }
+
+    .error-message {
+      color: #FF3E3E;
+      font-size: 14px;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+    }
+
+    .error-message i {
+      margin-right: 5px;
     }
 
     @media (max-width: 991px) {
@@ -167,6 +186,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="main-container">
@@ -183,35 +203,58 @@
           <h4 class="form-subtitle">Welcome !</h4>
         </div>
 
-        <form>
+        <form method="POST" action="{{ route('register') }}">
+          @csrf
           <div class="form-group">
-            <label for="restaurant_name">Username</label>
-            <input type="text" id="restaurant_name" placeholder="Enter your username">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" value="{{ old('username') }}" placeholder="Enter your username">
+            @error('username')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
           </div>
-
+          <!-- Phone Number Field -->
           <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="text" id="phone" placeholder="Enter phone number">
+            <input type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Enter phone number">
+            @error('phone')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
           </div>
 
+          <!-- Address Field -->
           <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" id="address" placeholder="Enter address">
+            <input type="text" id="address" name="address" value="{{ old('address') }}" placeholder="Enter address">
+            @error('address')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
           </div>
 
+          <!-- Email Field -->
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="Enter email address">
+            <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter email address">
+            @error('email')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
           </div>
 
+          <!-- Password Field -->
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter password">
+            <input type="password" id="password" name="password" placeholder="Enter password">
+            @error('password')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
           </div>
 
+          <!-- Password Confirmation Field -->
           <div class="form-group">
-            <label for="confirm_password">Confirm Your Password</label>
-            <input type="password" id="confirm_password" placeholder="Confirm password">
+            <label for="password_confirmation">Confirm Your Password</label>
+            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm password">
+            @error('password_confirmation')
+            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+            @enderror
           </div>
 
           <button type="submit" class="btn">Sign Up</button>
@@ -226,4 +269,5 @@
   </div>
 
 </body>
+
 </html>
