@@ -71,6 +71,15 @@ Route::middleware('admin')->group(function () {
         Route::post('/update/category', 'UpdateCategory')->name('category.update');
         Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
     });
+
+    Route::controller(CategoryController::class)->group(function(){
+        Route::get('/all/city', 'AllCity')->name('all.city');
+        Route::get('/add/category', 'AddCategory')->name('add.category');
+        Route::post('/store/city', 'StoreCity')->name('city.store');
+        Route::get('/edit/city/{id}', 'EditCity');
+        Route::post('/update/city', 'UpdateCity')->name('city.update');
+        Route::get('/delete/city/{id}', 'DeleteCity')->name('delete.city');
+    });
     
     
 }); // End Admin Middleware 
@@ -94,6 +103,15 @@ Route::middleware('client')->group(function () {
         Route::post('/update/product', 'UpdateProduct')->name('product.update');
         Route::get('/delete/product/{id}', 'DeleteProduct')->name('delete.product');
         Route::get('changeStatus', 'changeStatus');
+    });
+
+    Route::controller(RestaurantController::class)->group(function(){
+        Route::get('/all/gallery', 'AllGallery')->name('all.gallery');
+        Route::get('/add/gallery', 'AddGallery')->name('add.gallery');
+        Route::post('/store/gallery', 'StoreGallery')->name('gallery.store');
+        Route::get('/edit/gallery/{id}', 'EditGallery')->name('edit.gallery');
+        Route::post('/update/gallery', 'UpdateGallery')->name('gallery.update');
+        Route::get('/delete/gallery/{id}', 'DeleteGallery')->name('delete.gallery');
     });
 
 });

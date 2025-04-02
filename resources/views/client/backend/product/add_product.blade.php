@@ -58,19 +58,19 @@
  
  
  
-
+ <div class="col-xl-4 col-md-6"> 
+     <div class="form-group mb-3">
+         <label for="example-text-input" class="form-label">City Name</label>
+         <select class="form-select">
+             <option>Select</option>
+             @foreach ($city as $cit)
+             <option value="{{ $cit->id }}">{{ $cit->city_name }}</option>
+             @endforeach 
+         </select>
+     </div> 
+ </div>
  
 
-
-
-
-
-
-
-
-
- 
- 
  <div class="col-xl-4 col-md-6"> 
      <div class="form-group mb-3">
          <label for="example-text-input" class="form-label">Product Name</label>
