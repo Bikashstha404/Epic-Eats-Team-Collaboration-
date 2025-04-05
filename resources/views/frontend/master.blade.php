@@ -6,9 +6,9 @@
        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
        <meta name="description" content="Askbootstrap">
        <meta name="author" content="Askbootstrap">
-       <title>Osahan Eat - Online Food Ordering Website HTML Template</title>
+       <title>Epic Eats - Online Food Ordering Website</title>
        <!-- Favicon Icon -->
-       <link rel="icon" type="image/png" href="{{ asset('frontend/img/favicon.png') }}">
+       <link rel="icon" type="image/png" href="{{ asset('frontend/img/logo.png') }}">
        <!-- Bootstrap core CSS-->
        <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
        <!-- Font Awesome-->
@@ -22,6 +22,10 @@
        <!-- Owl Carousel -->
        <link rel="stylesheet" href="{{ asset('frontend/vendor/owl-carousel/owl.carousel.css') }}">
        <link rel="stylesheet" href="{{ asset('frontend/vendor/owl-carousel/owl.theme.css') }}">
+
+
+       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
     </head>
     <body>
        <div class="homepage-header">
@@ -49,6 +53,33 @@
        <script src="{{ asset('frontend/vendor/owl-carousel/owl.carousel.js') }}"></script>
        <!-- Custom scripts for all pages-->
        <script src="{{ asset('frontend/js/custom.js') }}"></script>
+
+
+
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+ 
+ <script>
+  @if(Session::has('message'))
+  var type = "{{ Session::get('alert-type','info') }}"
+  switch(type){
+     case 'info':
+     toastr.info(" {{ Session::get('message') }} ");
+     break;
+ 
+     case 'success':
+     toastr.success(" {{ Session::get('message') }} ");
+     break;
+ 
+     case 'warning':
+     toastr.warning(" {{ Session::get('message') }} ");
+     break;
+ 
+     case 'error':
+     toastr.error(" {{ Session::get('message') }} ");
+     break; 
+  }
+  @endif 
+ </script>
     </body>
  </html>
 
