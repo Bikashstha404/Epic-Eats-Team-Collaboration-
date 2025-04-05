@@ -8,8 +8,11 @@
            <div class="col-md-8">
               <div class="offer-dedicated-body-left">
      
-  
-                  
+     @php
+     $id = Auth::user()->id;
+     $profileData = App\Models\User::find($id);
+     @endphp
+
  
      <div class="pt-2"></div>
      <div class="bg-white rounded shadow-sm p-4 mb-4">
@@ -23,7 +26,8 @@
                          <div class="mr-3"><i class="icofont-ui-home icofont-3x"></i></div>
                          <div class="media-body">
                              <h6 class="mb-1 text-black">Home</h6>
-                             <p class="text-black">291/d/1, 291, Jawaddi Kalan, Ludhiana, Punjab 141002, India
+                             <p class="text-black">
+                             {{ $profileData->address }}
                              </p>
                              <p class="mb-0 text-black font-weight-bold"><a class="btn btn-sm btn-success mr-2" href="#"> DELIVER HERE</a> 
                              <span>30MIN</span>
@@ -154,125 +158,135 @@
                        <p class="mb-0 text-white"><i class="icofont-location-pin"></i> {{ $profileData->address }}</p>
                     </div>
                  </div>
-                 <div class="bg-white rounded shadow-sm mb-2">
-                    <div class="gold-members p-2 border-bottom">
-                       <p class="text-gray mb-0 float-right ml-2">$314</p>
-                       <span class="count-number float-right">
-                       <button class="btn btn-outline-secondary  btn-sm left dec"> <i class="icofont-minus"></i> </button>
-                       <input class="count-number-input" type="text" value="1" readonly="">
-                       <button class="btn btn-outline-secondary btn-sm right inc"> <i class="icofont-plus"></i> </button>
-                       </span>
-                       <div class="media">
-                          <div class="mr-2"><i class="icofont-ui-press text-danger food-item"></i></div>
-                          <div class="media-body">
-                             <p class="mt-1 mb-0 text-black">Chicken Tikka Sub</p>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="gold-members p-2 border-bottom">
-                       <p class="text-gray mb-0 float-right ml-2">$260</p>
-                       <span class="count-number float-right">
-                       <button class="btn btn-outline-secondary  btn-sm left dec"> <i class="icofont-minus"></i> </button>
-                       <input class="count-number-input" type="text" value="1" readonly="">
-                       <button class="btn btn-outline-secondary btn-sm right inc"> <i class="icofont-plus"></i> </button>
-                       </span>
-                       <div class="media">
-                          <div class="mr-2"><i class="icofont-ui-press text-success food-item"></i></div>
-                          <div class="media-body">
-                             <p class="mt-1 mb-0 text-black">Cheese corn Roll</p>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="gold-members p-2 border-bottom">
-                       <p class="text-gray mb-0 float-right ml-2">$260</p>
-                       <span class="count-number float-right">
-                       <button class="btn btn-outline-secondary  btn-sm left dec"> <i class="icofont-minus"></i> </button>
-                       <input class="count-number-input" type="text" value="1" readonly="">
-                       <button class="btn btn-outline-secondary btn-sm right inc"> <i class="icofont-plus"></i> </button>
-                       </span>
-                       <div class="media">
-                          <div class="mr-2"><i class="icofont-ui-press text-success food-item"></i></div>
-                          <div class="media-body">
-                             <p class="mt-1 mb-0 text-black">Cheese corn Roll</p>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="gold-members p-2 border-bottom">
-                       <p class="text-gray mb-0 float-right ml-2">$056</p>
-                       <span class="count-number float-right">
-                       <button class="btn btn-outline-secondary  btn-sm left dec"> <i class="icofont-minus"></i> </button>
-                       <input class="count-number-input" type="text" value="1" readonly="">
-                       <button class="btn btn-outline-secondary btn-sm right inc"> <i class="icofont-plus"></i> </button>
-                       </span>
-                       <div class="media">
-                          <div class="mr-2"><i class="icofont-ui-press text-success food-item"></i></div>
-                          <div class="media-body">
-                             <p class="mt-1 mb-0 text-black">Coke [330 ml]</p>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="gold-members p-2 border-bottom">
-                       <p class="text-gray mb-0 float-right ml-2">$652</p>
-                       <span class="count-number float-right">
-                       <button class="btn btn-outline-secondary  btn-sm left dec"> <i class="icofont-minus"></i> </button>
-                       <input class="count-number-input" type="text" value="1" readonly="">
-                       <button class="btn btn-outline-secondary btn-sm right inc"> <i class="icofont-plus"></i> </button>
-                       </span>
-                       <div class="media">
-                          <div class="mr-2"><i class="icofont-ui-press text-danger food-item"></i></div>
-                          <div class="media-body">
-                             <p class="mt-1 mb-0 text-black">Black Dal Makhani</p>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="gold-members p-2">
-                       <p class="text-gray mb-0 float-right ml-2">$122</p>
-                       <span class="count-number float-right">
-                       <button class="btn btn-outline-secondary  btn-sm left dec"> <i class="icofont-minus"></i> </button>
-                       <input class="count-number-input" type="text" value="1" readonly="">
-                       <button class="btn btn-outline-secondary btn-sm right inc"> <i class="icofont-plus"></i> </button>
-                       </span>
-                       <div class="media">
-                          <div class="mr-2"><i class="icofont-ui-press text-danger food-item"></i></div>
-                          <div class="media-body">
-                             <p class="mt-1 mb-0 text-black">Mixed Veg</p>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
+                 <p class="mb-4 text-white">{{ count((array) session('cart')) }} ITEMS</p>          
+     <div class="bg-white rounded shadow-sm mb-2">
+          
+         @php $total = 0 @endphp
+    @if (session('cart'))
+       @foreach (session('cart') as $id => $details) 
+       @php
+          $total += $details['price'] * $details['quantity']
+       @endphp
 
+       <div class="gold-members p-2 border-bottom">
+          <p class="text-gray mb-0 float-right ml-2">${{ $details['price'] * $details['quantity'] }}</p>
+          <span class="count-number float-right">
+         
+         <button class="btn btn-outline-secondary  btn-sm left dec" data-id="{{ $id }}" > <i class="icofont-minus"></i> </button>
+         
+          <input class="count-number-input" type="text" value="{{  $details['quantity'] }}" readonly="">
+          
+          <button class="btn btn-outline-secondary btn-sm right inc" data-id="{{ $id }}" > <i class="icofont-plus"></i> </button>
  
+          <button class="btn btn-outline-danger btn-sm right remove" data-id="{{ $id }}"> <i class="icofont-trash"></i> </button>
+          </span>
+          <div class="media">
+             <div class="mr-2"><img src="{{ asset($details['image']) }}"  width="25px" ></div>
+             <div class="media-body">
+                <p class="mt-1 mb-0 text-black">{{ $details['name'] }}</p>
+             </div>
+          </div>
+       </div>
+       @endforeach
+       @endif
+                
+     </div>
+ 
+         <a href="thanks.html" class="btn btn-success btn-block btn-lg">PAY  
+             ${{ $total }}
+         <i class="icofont-long-arrow-right"></i></a>
+         </div>
+         <div class="pt-2"></div>
                  
-                 <div class="mb-2 bg-white rounded p-2 clearfix">
-                    <p class="mb-1">Item Total <span class="float-right text-dark">$3140</span></p>
-                    <p class="mb-1">Restaurant Charges <span class="float-right text-dark">$62.8</span></p>
-                    <p class="mb-1">Delivery Fee <span class="text-info" data-toggle="tooltip" data-placement="top" title="Total discount breakup">
-                       <i class="icofont-info-circle"></i>
-                       </span> <span class="float-right text-dark">$10</span>
-                    </p>
-                    <p class="mb-1 text-success">Total Discount 
-                       <span class="float-right text-success">$1884</span>
-                    </p>
-                    <hr />
-                    <h6 class="font-weight-bold mb-0">TO PAY  <span class="float-right">$1329</span></h6>
-                 </div>
-                 <a href="thanks.html" class="btn btn-success btn-block btn-lg">PAY $1329
-                 <i class="icofont-long-arrow-right"></i></a>
-              </div>
-              <div class="pt-2"></div>
-              <div class="alert alert-success" role="alert">
-                 You have saved <strong>$1,884</strong> on the bill
-              </div>
-              <div class="pt-2"></div>
-              <div class="text-center pt-2">
-              </div>
+
+
            </div>
         </div>
      </div>
   </section>
  
- 
- 
+  <script>
+     $(document).ready(function() {
+        
+        const Toast = Swal.mixin({
+           toast: true,
+           position: 'top-end',
+           showConfirmButton: false,
+           timer: 1500,
+           timerProgressBar: true,
+           didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer);
+              toast.addEventListener('mouseleave', Swal.resumeTimer);
+           }
+        });
+  
+        $('.inc').on('click', function() {
+           var id = $(this).data('id');
+           var input = $(this).closest('span').find('input');
+           var newQuantity = parseInt(input.val()) + 1;
+           updateQuantity(id,newQuantity);
+        });
+  
+        $('.dec').on('click', function() {
+           var id = $(this).data('id');
+           var input = $(this).closest('span').find('input');
+           var newQuantity = parseInt(input.val()) - 1;
+           if (newQuantity >= 1) {
+              updateQuantity(id,newQuantity);
+           } 
+        });
+  
+        $('.remove').on('click', function() {
+           var id = $(this).data('id');
+           removeFromCart(id);
+        });
+  
+        function updateQuantity(id,quantity){
+           $.ajax({
+              url: '{{ route("cart.updateQuantity") }}',
+              method: 'POST',
+              data: {
+                 _token: '{{ csrf_token() }}',
+                 id: id,
+                 quantity: quantity
+              },
+              success: function(response){
+                 Toast.fire({
+                    icon: 'success',
+                    title: 'Quantity Updated'
+                 }).then(() => {
+                    location.reload();
+                 });
+  
+              }
+           })
+        }
+  
+        function removeFromCart(id){
+           $.ajax({
+              url: '{{ route("cart.remove") }}',
+              method: 'POST',
+              data: {
+                 _token: '{{ csrf_token() }}',
+                 id: id
+              },
+              success: function(response){
+  
+                 Toast.fire({
+                    icon: 'success',
+                    title: 'Cart Remove Successfully'
+                 }).then(() => {
+                    location.reload();
+                 });
+  
+              }
+           });
+        }
+  
+   
+  
+     })
+   </script>
  
  
  
