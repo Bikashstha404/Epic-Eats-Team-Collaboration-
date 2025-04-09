@@ -4,146 +4,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Owner Registration</title>
+  <title>Owner Registration - EpicEats</title>
+
+  <!-- Google Fonts & Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-   <!-- Bootstrap core CSS -->
-   <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-  <!-- Font Awesome for icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      padding: 0;
       font-family: 'Poppins', sans-serif;
-      background-color: #f7f7f7;
-    }
-
-    .main-container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 60px;
-      border-radius: 18px;
-      background-color: #fff;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
-      position: relative;
+      margin: 0;
+      background: linear-gradient(to right, #ffe0cc, #ffd1b3);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
     }
 
-    .logo-wrapper {
-      position: absolute;
-      top: 25px;
-      right: 30px;
-      z-index: 10;
-    }
-
-    .logo {
-      width: 100px;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
-      transition: transform 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .form-column {
-      flex: 1;
-      max-width: 48%;
-    }
-
-    .heading-wrapper {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .form-title {
-      font-size: 34px;
-      font-weight: 700;
-      color: #FF6B35;
-      margin-bottom: 5px;
-    }
-
-    .form-subtitle {
-      font-size: 22px;
-      font-weight: 600;
-      color: #333;
-      margin: 0;
-    }
-
-    .form-group {
-      margin-bottom: 22px;
-    }
-
-    label {
-      font-size: 15px;
-      color: #444;
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-      width: 100%;
-      padding: 12px 16px;
-      border: 2px solid #FF6B35;
-      border-radius: 10px;
-      font-size: 15px;
-      outline: none;
-      transition: 0.3s;
-      background-color: #fffdfc;
-      box-shadow: 0 2px 6px rgba(255, 107, 53, 0.05);
-    }
-
-    input:focus {
-      border-color: #e65a2d;
-      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15);
-    }
-
-    .btn {
-      background: linear-gradient(135deg, #FF6B35, #ff914d);
-      color: white;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 14px 40px;
-      border-radius: 12px;
-      border: none;
-      box-shadow: 0 8px 16px rgba(255, 107, 53, 0.25);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      letter-spacing: 0.5px;
-      display: block;
-      margin: 20px auto;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(135deg, #ff571c, #ff7c3a);
-      box-shadow: 0 12px 24px rgba(255, 107, 53, 0.3);
-    }
-
-    .image-column {
-      flex: 1;
-      max-width: 48%;
-      text-align: center;
+    .position-relative {
       position: relative;
     }
 
-    .illustration {
-      max-width: 100%;
+    .card {
+      margin-left: 11vw;
+      display: flex;
+      width: 100%;
+      max-width: 42vw;
+      margin-right: 25px;
       height: auto;
-      z-index: 1;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    .left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 30px;
+      justify-content: center;
+      overflow-y: hidden;
+    }
+
+    .logo-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      width: 90px;
+    }
+
+    .form-header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-header h2 {
+      color: #ff6b35;
+      font-size: 30px;
+      font-weight: 700;
+      margin: 0;
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .form-control {
+      width: 100%;
+      border: none;
+      height: auto;
+      max-height: 42px;
+      border-radius: 14px;
+      padding: 16px 18px;
+      background-color: #fff8e1;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      border: 2px solid orange;
+      box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15);
+      background-color: #fff;
+    }
+
+    .eye-icon {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #999;
+      font-size: 18px;
+    }
+
+    .input-container {
+      position: relative;
+      width: 100%;
     }
 
     .error-message {
@@ -158,111 +129,182 @@
       margin-right: 5px;
     }
 
-    @media (max-width: 991px) {
-      .row {
+
+    .btn-submit {
+      margin-top: 14px;
+      padding: 10px;
+      width: 100%;
+      background: linear-gradient(to right, #ff6b35, #ff914d);
+      border: none;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(to right, #ff571c, #ff7c3a);
+    }
+
+    .login-text {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #444;
+    }
+
+
+    .right {
+      display: flex;
+      justify-content: center;
+      background: none;
+    }
+
+    .right img {
+      max-width: 70%;
+      max-height: 70%;
+      object-fit: contain;
+    }
+
+    @media screen and (max-width: 768px) {
+      .card {
         flex-direction: column;
+        max-width: 90vw;
+        margin-right: 0;
       }
 
-      .form-column,
-      .image-column {
-        max-width: 100%;
+      .left {
+        padding: 20px;
+        margin-bottom: 20px;
       }
 
-      .main-container {
-        padding: 40px 25px;
-        border-radius: 0;
+      .right {
+        display: none;
       }
 
-      .logo-wrapper {
-        top: 15px;
-        right: 20px;
+      .form-header h2 {
+        font-size: 24px;
       }
 
       .logo {
-        width: 90px;
+        width: 70px;
+      }
+
+      .btn-submit {
+        font-size: 14px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .form-header h2 {
+        font-size: 22px;
+      }
+
+      .form-control {
+        padding: 12px 15px;
+        font-size: 14px;
+      }
+
+      .btn-submit {
+        padding: 8px;
+        font-size: 12px;
       }
     }
   </style>
 </head>
 
 <body>
-
-  <form class="mt-4 pt-2" action="{{ route('client.register.submit') }}" method="post">
-    @csrf
-
-    <div class="main-container">
-      <!-- Logo -->
-      <div class="logo-wrapper">
-        <img src="{{ asset('frontend/img/logo.png') }}" class="logo" alt="EpicEats Logo">
-      </div>
-
-      <div class="row">
-        <!-- Left Column -->
-        <div class="form-column">
-          <div class="heading-wrapper">
-            <h2 class="form-title">Owner Registration</h2>
-            <h4 class="form-subtitle">Welcome !</h4>
-          </div>
-
-          <div class="form-group">
-            <label for="restaurant_name">Restaurant Name</label>
-            <input type="text" id="restaurant_name" name="restaurant_name" value="{{ old('restaurant_name') }}" placeholder="Enter restaurant name">
-            @error('restaurant_name')
-            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
-            @enderror
-          </div>
-
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="Enter phone number">
-            @error('phone')
-            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
-            @enderror
-          </div>
-
-          <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address" value="{{ old('address') }}" placeholder="Enter address">
-            @error('address')
-            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
-            @enderror
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="Enter email address">
-            @error('email')
-            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
-            @enderror
-          </div>
-
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Enter password">
-            @error('password')
-            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
-            @enderror
-          </div>
-
-          <div class="form-group">
-            <label for="password_confirmation">Confirm Your Password</label>
-            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirm password">
-            @error('password_confirmation')
-            <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
-            @enderror
-          </div>
-
-          <button type="submit" class="btn">Sign Up</button>
-        </div>
-
-        <!-- Right Column -->
-        <div class="image-column">
-          <img src="{{ asset('frontend/img/register-illustration.png') }}" class="illustration" alt="Registration Illustration">
+  <div class="card">
+    <!-- Left: Form -->
+    <div class="left">
+      <div class="logo-header">
+        <img src="{{ asset('frontend/img/logo.png') }}" alt="EpicEats Logo" class="logo">
+        <div class="form-header">
+          <h2>Owner Registration</h2>
+          <h4>Welcome!</h4>
         </div>
       </div>
+      <form method="POST" action="{{ route('client.register.submit') }}">
+        @csrf
+
+        <div class="form-group">
+          <input type="text" class="form-control" id="restaurant_name" name="restaurant_name" value="{{ old('restaurant_name') }}" placeholder="Enter restaurant name">
+          @error('restaurant_name')
+          <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+          @enderror
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone number" value="{{ old('phone') }}">
+          @error('phone')
+          <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+          @enderror
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control" id="address" name="address" placeholder="Enter address" value="{{ old('address') }}">
+          @error('address')
+          <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+          @enderror
+        </div>
+
+        <div class="form-group">
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address" value="{{ old('email') }}">
+          @error('email')
+          <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+          @enderror
+        </div>
+
+        <div class="form-group position-relative">
+          <div class="input-container">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+            <span class="eye-icon"><i class="fas fa-eye" id="togglePassword"></i></span>
+          </div>
+          @error('password')
+          <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+          @enderror
+        </div>
+
+        <div class="form-group position-relative">
+          <div class="input-container">
+            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm password">
+            <span class="eye-icon"><i class="fas fa-eye" id="toggleConfirmPassword"></i></span>
+          </div>
+          @error('password_confirmation')
+          <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
+          @enderror
+        </div>
+
+        <button type="submit" class="btn-submit">Sign Up</button>
+        <p class="login-text">Already have an account? <a href="{{ route('client.login') }}">Login</a></p>
+      </form>
     </div>
-  </form>
+  </div>
+  <div class="right">
+    <img src="{{ asset('frontend/img/client-register.png') }}" alt="User Illustration">
+  </div>
+  <script>
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
 
+    togglePassword.addEventListener("click", function() {
+      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+      passwordInput.setAttribute("type", type);
+      this.classList.toggle("fa-eye");
+      this.classList.toggle("fa-eye-slash");
+    });
+
+    const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
+    const confirmPasswordInput = document.getElementById("password_confirmation");
+
+    toggleConfirmPassword.addEventListener("click", function() {
+      const type = confirmPasswordInput.getAttribute("type") === "password" ? "text" : "password";
+      confirmPasswordInput.setAttribute("type", type);
+      this.classList.toggle("fa-eye");
+      this.classList.toggle("fa-eye-slash");
+    });
+  </script>
 </body>
 
 </html>
