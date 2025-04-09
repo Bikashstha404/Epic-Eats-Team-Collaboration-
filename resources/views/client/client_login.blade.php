@@ -151,7 +151,7 @@
 
                      <a href="#" class="forgot-password">Forgot Password?</a>
                      <button type="submit" class="btn btn-signin">Sign In</button>
-                     <p class="signup-text">Don’t have an account? <a href="{{ route('register') }}">Sign UP</a></p>
+                     <p class="signup-text">Don’t have an account? <a href="{{ route('client.register') }}">Sign UP</a></p>
                   </form>
                </div>
             </div>
