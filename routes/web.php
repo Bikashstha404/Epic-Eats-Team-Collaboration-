@@ -70,6 +70,8 @@ Route::get('/client/register', [ClientController::class, 'ClientRegister'])->nam
 Route::post('/client/register/submit', [ClientController::class, 'ClientRegisterSubmit'])->name('client.register.submit');
 
 
+
+
 /// All Admin Category 
 Route::middleware('admin')->group(function () {
  
@@ -152,6 +154,12 @@ Route::middleware(['client','status'])->group(function () {
         Route::post('/update/gallery', 'UpdateGallery')->name('gallery.update');
         Route::get('/delete/gallery/{id}', 'DeleteGallery')->name('delete.gallery');
     });
+
+    Route::controller(ManageOrderController::class)->group(function(){
+        Route::get('/all/client/orders', 'AllClientOrders')->name('all.client.orders'); 
+        Route::get('/client/order/details/{id}', 'ClientOrderDetails')->name('client.order.details'); 
+    });
+   
 
 });
  // End Client Middleware
