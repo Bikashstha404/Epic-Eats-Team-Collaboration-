@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ManageController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Admin\ManageOrderController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -106,6 +107,20 @@ Route::middleware('admin')->group(function () {
        
     });
     
+    Route::controller(ManageOrderController::class)->group(function(){
+        Route::get('/pending/order', 'PendingOrder')->name('pending.order'); 
+        Route::get('/confirm/order', 'ConfirmOrder')->name('confirm.order'); 
+        Route::get('/processing/order', 'ProcessingOrder')->name('processing.order'); 
+        Route::get('/delivered/order', 'DeliveredOrder')->name('delivered.order'); 
+        Route::get('/admin/order/details/{id}', 'AdminOrderDetails')->name('admin.order.details'); 
+    });
+
+    Route::controller(ManageOrderController::class)->group(function(){
+        Route::get('/pening_to_confirm/{id}', 'PendingToConfirm')->name('pening_to_confirm');
+        Route::get('/confirm_to_processing/{id}', 'ConfirmToProcessing')->name('confirm_to_processing'); 
+        Route::get('/processing_to_delivered/{id}', 'ProcessingToDelivered')->name('processing_to_delivered'); 
+
+    });
     
 }); // End Admin Middleware 
 
@@ -160,3 +175,5 @@ Route::controller(OrderController::class)->group(function(){
     Route::post('/cash_order', 'CashOrder')->name('cash_order');
    
 });
+
+
