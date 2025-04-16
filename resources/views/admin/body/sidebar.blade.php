@@ -9,31 +9,37 @@
         <li class="menu-title" data-key="t-menu">Menu</li>
 
         <li>
-            <a href="index.html">
+            <a href="{{ route('admin.dashboard') }}">
                 <i data-feather="home"></i>
                 <span data-key="t-dashboard">Dashboard</span>
             </a>
         </li>
 
+
+        @if (Auth::guard('admin')->user()->can('category.menu')) 
         <li>
             <a href="javascript: void(0);" class="has-arrow">
                 <i data-feather="grid"></i>
                 <span data-key="t-apps">Category</span>
             </a>
             <ul class="sub-menu" aria-expanded="false">
+            @if (Auth::guard('admin')->user()->can('category.all')) 
                 <li>
                   <a href="{{ route('all.category') }}">
                         <span data-key="t-calendar">All Category</span>
                     </a>
                 </li>
-
+                @endif
+                 @if (Auth::guard('admin')->user()->can('category.add')) 
                 <li>
                   <a href="{{ route('add.category') }}">
                         <span data-key="t-chat">Add Category</span>
                     </a>
                 </li>
+                @endif
             </ul>
         </li>
+        @endif
 
         <li>
              <a href="javascript: void(0);" class="has-arrow">
@@ -126,19 +132,6 @@
 
         <li>
             <a href="javascript: void(0);" class="has-arrow">
-                <i data-feather="briefcase"></i>
-                <span data-key="t-components">Components</span>
-            </a>
-            <ul class="sub-menu" aria-expanded="false">
-                <li><a href="ui-alerts.html" data-key="t-alerts">Alerts</a></li>
-                <li><a href="ui-buttons.html" data-key="t-buttons">Buttons</a></li>
-                <li><a href="ui-cards.html" data-key="t-cards">Cards</a></li>
-                <li><a href="ui-carousel.html" data-key="t-carousel">Carousel</a></li>
-            </ul>
-        </li>
-
-        <li>
-            <a href="javascript: void(0);" class="has-arrow">
                 <i data-feather="gift"></i>
                 <span data-key="t-ui-elements">Manage Review</span>
             </a>
@@ -147,6 +140,20 @@
                 <li><a href="{{ route('admin.approve.review') }}" data-key="t-range-slider">Approve Review</a></li>
             </ul>
         </li>
+
+        <li>
+             <a href="javascript: void(0);" class="has-arrow">
+                 <i data-feather="gift"></i>
+                 <span data-key="t-ui-elements">Role & Permission</span>
+             </a>
+             <ul class="sub-menu" aria-expanded="false">
+                 <li><a href="{{ route('all.permission') }}" data-key="t-lightbox">All Permission</a></li>
+                 <li><a href="{{ route('all.roles') }}" data-key="t-range-slider">All Roles</a></li>
+                 <li><a href="{{ route('add.roles.permission') }}" data-key="t-range-slider">Role In Permission</a></li>
+                 <li><a href="{{ route('all.roles.permission') }}" data-key="t-range-slider">All Role In Permission</a></li>
+                 
+             </ul>
+         </li>
 
     </ul>
 
