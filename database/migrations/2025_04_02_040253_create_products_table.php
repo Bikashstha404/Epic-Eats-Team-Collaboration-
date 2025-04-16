@@ -16,7 +16,7 @@
              $table->string('name');
              $table->string('slug')->nullable();
              $table->integer('category_id');
-             $table->unsignedBigInteger('city_id')->nullable();
+             $table->integer('city_id');
              $table->integer('menu_id');
              $table->string('code')->nullable();
              $table->string('qty')->nullable();

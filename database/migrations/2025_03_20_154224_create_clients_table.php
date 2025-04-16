@@ -16,6 +16,7 @@
              $table->string('name');
              $table->string('email')->unique();
              $table->timestamp('email_verified_at')->nullable();
+             $table->integer('city_id');
              $table->string('password');
              $table->string('token')->nullable();
              $table->string('photo')->nullable();
