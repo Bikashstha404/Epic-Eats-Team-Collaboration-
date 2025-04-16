@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Admin\ManageOrderController;
+use App\Http\Controllers\Frontend\ReviewController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -164,7 +165,10 @@ Route::middleware(['client','status'])->group(function () {
         Route::get('/all/client/orders', 'AllClientOrders')->name('all.client.orders'); 
         Route::get('/client/order/details/{id}', 'ClientOrderDetails')->name('client.order.details'); 
     });
-   
+    Route::controller(ReviewController::class)->group(function(){
+        Route::get('/client/all/reviews', 'ClientAllReviews')->name('client.all.reviews'); 
+        
+    });
 
 });
  // End Client Middleware
@@ -189,4 +193,8 @@ Route::controller(OrderController::class)->group(function(){
    
 });
 
+Route::controller(ReviewController::class)->group(function(){
+    Route::post('/store/review', 'StoreReview')->name('store.review');  
+    
+});
 
