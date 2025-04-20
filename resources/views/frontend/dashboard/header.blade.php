@@ -1,5 +1,6 @@
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light osahan-nav shadow-sm">
+      <div class="container-fluid" style="background-color: white; color: black;">
          <div class="container">
             <a class="navbar-brand" href="{{ route('index') }}"><img alt="logo" src="{{ asset('frontend/img/logo.png') }}" style="height: 50px;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

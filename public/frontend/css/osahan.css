@@ -209,11 +209,12 @@ img{
 }
 /* Homepage Search Block */
 .homepage-header{
-    background: url(../img/bg.png);
+    background: url(../img/bgg.jpg);
     position: relative;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 .overlay {
     background: #000;
@@ -227,10 +228,10 @@ img{
     backdrop-filter: saturate(180%) blur(5px);
 }
 .homepage-header .osahan-nav {
-    background: transparent !important;
+    background: white !important;
 }
 .homepage-header .osahan-nav .nav-link {
-    color: #fff !important;
+    color: #000000d3 !important;
     padding-bottom: 14px !important;
 }
 .homepage-search-form .form-control {
