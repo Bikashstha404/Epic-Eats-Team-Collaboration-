@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light osahan-nav">
    <div class="container-fluid" style="background-color: white; font-color: black;">
       <a class="navbar-brand" href="{{ route('index') }}">
-         <img alt="logo" src="{{ asset('frontend/img/logo.png') }}" style="height: 60px;">
+         <img alt="logo" src="{{ asset('frontend/img/images/Logo.png') }}" style="height: 60px;">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
