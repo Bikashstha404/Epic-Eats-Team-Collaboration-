@@ -32,7 +32,7 @@
              <div class="d-flex align-items-start mt-3 mt-sm-0">
                  <div class="flex-shrink-0">
                      <div class="avatar-xl me-3">
-                         <img src="{{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="" class="img-fluid rounded-circle d-block">
+                         <img src="{{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="" class="rounded-circle d-block bg-primary" style="width: 90px; height: 90px; object-fit: cover;">
                      </div>
                  </div>
                  <div class="flex-grow-1">

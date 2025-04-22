@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    <meta name="description" content="Askbootstrap">
    <meta name="author" content="Askbootstrap">
-   <title>User Login - Online Food Ordering</title>
+   <title>Client Login | EpicEats</title>
 
    <!-- Google Fonts -->
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -14,6 +14,8 @@
    <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
    <!-- Font Awesome for icons -->
    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+   <!-- Favicon Icon -->
+   <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('frontend/img/images/Logo.png') }}">
 
    <style>
       body {
@@ -194,7 +196,7 @@
       <div class="row w-100">
          <div class="col-md-6 d-flex justify-content-center align-items-center">
             <div class="login-box">
-               <img src="{{ asset('frontend/img/logo.png')}}" alt="Logo" width="150">
+               <img src="{{ asset('frontend/img/images/Logo.png')}}" alt="Logo" width="150">
                <p class="sub-text">A Flavor Race, in One Place!</p>
                <h3 class="login-heading">Welcome Owner!</h3>
 
@@ -225,7 +227,7 @@
             </div>
          </div>
          <div class="col-md-6 image-container">
-            <img src="{{ asset('frontend/img/login-illustration.png')}}" alt="Login Illustration">
+            <img src="{{ asset('frontend/img/images/ClientLogin.png')}}" alt="Login Illustration">
          </div>
       </div>
    </div>

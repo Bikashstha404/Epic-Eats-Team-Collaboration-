@@ -4,10 +4,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Login | EpicEats</title>
+  <title>User Login | EpicEats</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- Favicon Icon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('frontend/img/images/Logo.png') }}">
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -186,7 +188,7 @@
     <div class="row w-100">
       <div class="col-md-6 d-flex justify-content-center align-items-center">
         <div class="login-box">
-          <img src="{{ asset('frontend/img/logo.png') }}" alt="EpicEats Logo">
+          <img src="{{ asset('frontend/img/images/Logo.png') }}" alt="EpicEats Logo">
           <p class="sub-text">A Flavor Race, in One Place!</p>
           <h3 class="login-heading">Savor the journey!</h3>
 
@@ -194,7 +196,7 @@
             @csrf
 
             <div class="form-group">
-              <input type="email" name="email" class="form-control @error('email') error @enderror" placeholder="Enter your email">
+              <input type="email" name="email" class="form-control @error('email') error @enderror" placeholder="Enter your email" value="{{ old('email') }}">
               @error('email')
               <div class="text-danger small mt-1"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
               @enderror
@@ -218,7 +220,7 @@
       </div>
 
       <div class="col-md-6 image-container d-none d-md-flex align-items-center justify-content-center">
-        <img src="{{ asset('frontend/img/login-illustrator.png') }}" alt="Login Illustration">
+        <img src="{{ asset('frontend/img/images/UserLogin.png') }}" alt="Login Illustration">
       </div>
     </div>
   </div>

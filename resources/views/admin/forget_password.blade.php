@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reset Password | EpicEats</title>
+    <title>Forget Password | EpicEats</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('frontend/img/images/Logo.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -34,7 +35,7 @@
 
     <!-- Logo -->
     <div class="absolute top-8 right-8">
-        <img src="{{ asset('frontend/img/logo.png') }}" alt="EpicEats Logo" class="w-28 md:w-32 drop-shadow-md">
+        <img src="{{ asset('frontend/img/images/Logo.png') }}" alt="EpicEats Logo" class="w-28 md:w-32 drop-shadow-md">
     </div>
 
     <!-- Card -->
