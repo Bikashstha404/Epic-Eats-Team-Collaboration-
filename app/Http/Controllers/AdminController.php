@@ -7,164 +7,177 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\Websitemail;
 use App\Models\Admin;
+use Illuminate\Validation\Rules\Password;
 
 class AdminController extends Controller
 {
-    public function AdminLogin(){
-        return view('admin.login');
-        }
-    public function AdminDashboard(){
-        return view('admin.index');
-        }
+  public function AdminLogin()
+  {
+    return view('admin.login');
+  }
+  public function AdminDashboard()
+  {
+    return view('admin.index');
+  }
 
-    public function AdminLoginSubmit(Request $request){
-         $request->validate([
-            'email'=>'required|email',
-            'password'=>'required',
+  public function AdminLoginSubmit(Request $request)
+  {
+    $request->validate([
+      'email' => 'required|email',
+      'password' => 'required',
 
-         ]);
-         $check =$request->all();
-         $data=[
-            'email'=>$check['email'],
-            'password'=>$check['password'],
-         ];
-         if (Auth::guard('admin')->attempt($data)){
-            return redirect()->route ('admin.dashboard')->with('success','Login Sucessfully');
-         }else{
-            return redirect()->route ('admin.login')->with('error','Invalid Credentials');
-         }
+    ]);
+    $check = $request->all();
+    $data = [
+      'email' => $check['email'],
+      'password' => $check['password'],
+    ];
+    if (Auth::guard('admin')->attempt($data)) {
+      return redirect()->route('admin.dashboard')->with('success', 'Login Sucessfully');
+    } else {
+      return redirect()->route('admin.login')->with('error', 'Invalid Credentials');
     }
+  }
 
-    public function AdminLogout(){
-      Auth::guard('admin') ->logout();
-      return redirect()->route ('admin.login')->with('success','Logout Success');
+  public function AdminLogout()
+  {
+    Auth::guard('admin')->logout();
+    return redirect()->route('admin.login')->with('success', 'Logout Success');
+  }
+
+  public function AdminForgetPassword()
+  {
+    return view('admin.forget_password');
+  }
+
+  public function AdminPasswordSubmit(Request $request)
+  {
+    $request->validate([
+      'email' => 'required|email'
+    ]);
+
+    $admin_data = Admin::where('email', $request->email)->first();
+    if (!$admin_data) {
+      return redirect()->back()->with('error', 'Email Not Found');
     }
+    $token = hash('sha256', time());
+    $admin_data->token = $token;
+    $admin_data->update();
 
-    public function AdminForgetPassword(){
-      return view('admin.forget_password');
+    $reset_link = url('admin/reset-password/' . $token . '/' . $request->email);
+    $subject = "Reset Password";
+    $message = "Please Click on below link to reset password<br>";
+    $message .= "<a href='" . $reset_link . " '> Click Here </a>";
+
+    \Mail::to($request->email)->send(new Websitemail($subject, $message));
+    return redirect()->back()->with('success', 'Reset Password Link Send On Your Email');
+  }
+
+  public function AdminResetPassword($token, $email)
+  {
+    $admin_data = Admin::where('email', $email)->where('token', $token)->first();
+
+    if (!$admin_data) {
+      return redirect()->route('admin.login')->with('error', 'Invalid Token or Email');
     }
+    return view('admin.reset_password', compact('token', 'email'));
+  }
 
-    public function AdminPasswordSubmit(Request $request){
-      $request->validate([
-         'email' => 'required|email'
-      ]);
+  public function AdminResetPasswordSubmit(Request $request)
+  {
+    $request->validate([
+      // 'password' => 'required',
+      // 'password_confirmation' => 'required|same:password',
+      'password' => ['required'],
+      'password_confirmatioin' => ['required', 'confirmed', Password::defaults()],
+    ]);
 
-      $admin_data = Admin::where('email', $request->email)->first();
-      if (!$admin_data) {
-         return redirect()->back()->with('error','Email Not Found');
+    $admin_data = Admin::where('email', $request->email)->where('token', $request->token)->first();
+    $admin_data->password = Hash::make($request->password);
+    $admin_data->token = "";
+    $admin_data->update();
+
+    return redirect()->route('admin.login')->with('success', 'Password Reset Successfully');
+  }
+
+  public function AdminProfile()
+  {
+    $id = Auth::guard('admin')->id();
+    $profileData = Admin::find($id);
+    return view('admin.admin_profile', compact('profileData'));
+  }
+
+  public function AdminProfileStore(Request $request)
+  {
+    $id = Auth::guard('admin')->id();
+    $data = Admin::find($id);
+
+    $data->name = $request->name;
+    $data->email = $request->email;
+    $data->phone = $request->phone;
+    $data->address = $request->address;
+
+    $oldPhotoPath = $data->photo;
+
+    if ($request->hasFile('photo')) {
+      $file = $request->file('photo');
+      $filename = time() . '.' . $file->getClientOriginalExtension();
+      $file->move(public_path('upload/admin_images'), $filename);
+      $data->photo = $filename;
+
+      if ($oldPhotoPath && $oldPhotoPath !== $filename) {
+        $this->deleteOldImage($oldPhotoPath);
       }
-      $token = hash('sha256',time());
-      $admin_data->token = $token;
-      $admin_data->update();
-
-      $reset_link = url('admin/reset-password/'.$token.'/'.$request->email);
-      $subject = "Reset Password";
-      $message = "Please Click on below link to reset password<br>";
-      $message .= "<a href='".$reset_link." '> Click Here </a>";
-
-      \Mail::to($request->email)->send(new Websitemail($subject,$message));
-      return redirect()->back()->with('success','Reset Password Link Send On Your Email');
     }
+    $data->save();
 
-    public function AdminResetPassword($token,$email){
-      $admin_data = Admin::where('email',$email)->where('token',$token)->first();
+    $notification = array(
+      'message' => 'Profile Updated Successfully',
+      'alert-type' => 'success'
+    );
 
-      if (!$admin_data) {
-         return redirect()->route('admin.login')->with('error','Invalid Token or Email');
-      }
-      return view('admin.reset_password',compact('token','email'));
+    return redirect()->back()->with($notification);
+  }
+  // End Method 
+  private function deleteOldImage(string $oldPhotoPath): void
+  {
+    $fullPath = public_path('upload/admin_images/' . $oldPhotoPath);
+    if (file_exists($fullPath)) {
+      unlink($fullPath);
     }
+  }
 
-    public function AdminResetPasswordSubmit(Request $request){
-      $request->validate([
-         'password' => 'required',
-         'password_confirmation' => 'required|same:password',
-      ]);
+  public function AdminChangePassword()
+  {
+    $id = Auth::guard('admin')->id();
+    $profileData = Admin::find($id);
+    return view('admin.admin_change_Password', compact('profileData'));
+  }
 
-      $admin_data = Admin::where('email',$request->email)->where('token',$request->token)->first();
-      $admin_data->password = Hash::make($request->password);
-      $admin_data->token = "";
-      $admin_data->update();
+  public function AdminPasswordUpdate(Request $request)
+  {
+    $admin = Auth::guard('admin')->user();
+    $request->validate([
+      'old_password' => ['required'],
+      'new_password' => ['required', 'confirmed', Password::defaults()],
+    ]);
 
-      return redirect()->route('admin.login')->with('success','Password Reset Successfully');
-    }
-
-    public function AdminProfile(){
-      $id = Auth::guard('admin')->id();
-      $profileData = Admin::find($id);
-      return view('admin.admin_profile',compact('profileData'));
-    }
-
-    public function AdminProfileStore(Request $request){
-      $id = Auth::guard('admin')->id();
-      $data = Admin::find($id);
-
-      $data->name = $request->name;
-      $data->email = $request->email;
-      $data->phone = $request->phone;
-      $data->address = $request->address; 
-
-      $oldPhotoPath = $data->photo;
-
-      if ($request->hasFile('photo')) {
-         $file = $request->file('photo');
-         $filename = time().'.'.$file->getClientOriginalExtension();
-         $file->move(public_path('upload/admin_images'),$filename);
-         $data->photo = $filename;
-
-         if ($oldPhotoPath && $oldPhotoPath !== $filename) {
-           $this->deleteOldImage($oldPhotoPath);
-         }
-
-      }
-      $data->save();
-
+    if (!Hash::check($request->old_password, $admin->password)) {
       $notification = array(
-         'message' => 'Profile Updated Successfully',
-         'alert-type' => 'success'
+        'message' => 'Old Password Does not Match!',
+        'alert-type' => 'error'
       );
-     
-      return redirect()->back()->with($notification);
+      return back()->with($notification);
     }
-    // End Method 
-    private function deleteOldImage(string $oldPhotoPath): void {
-      $fullPath = public_path('upload/admin_images/'.$oldPhotoPath);
-      if (file_exists($fullPath)) {
-          unlink($fullPath);
-      }
-    }
+    /// Update the new password 
+    Admin::whereId($admin->id)->update([
+      'password' => Hash::make($request->new_password)
+    ]);
 
-    public function AdminChangePassword(){
-      $id = Auth::guard('admin')->id();
-      $profileData = Admin::find($id);
-      return view('admin.admin_change_Password',compact('profileData'));
-    }
-
-    public function AdminPasswordUpdate(Request $request){
-      $admin = Auth::guard('admin')->user();
-      $request->validate([
-          'old_password' => 'required',
-          'new_password' => 'required|confirmed'
-      ]);
-
-      if (!Hash::check($request->old_password,$admin->password)) {
-         $notification = array(
-             'message' => 'Old Password Does not Match!',
-             'alert-type' => 'error'
-         );
-         return back()->with($notification);
-     }
-     /// Update the new password 
-     Admin::whereId($admin->id)->update([
-         'password' => Hash::make($request->new_password)
-     ]);
-
-             $notification = array(
-             'message' => 'Password Change Successfully',
-             'alert-type' => 'success'
-         );
-         return back()->with($notification);
-    }
-
+    $notification = array(
+      'message' => 'Password Change Successfully',
+      'alert-type' => 'success'
+    );
+    return back()->with($notification);
+  }
 }
-
