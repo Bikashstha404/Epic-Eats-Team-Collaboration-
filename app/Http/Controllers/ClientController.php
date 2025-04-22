@@ -123,8 +123,10 @@ class ClientController extends Controller
     public function ClientResetPasswordSubmit(Request $request)
     {
         $request->validate([
-            'password' => 'required',
-            'password_confirmation' => 'required|same:password',
+            // 'password' => 'required',
+            // 'password_confirmation' => 'required|same:password',
+            'password' => ['required'],
+            'password_confirmation' => ['required', 'confirmed', Password::defaults()],
         ]);
 
         $client_data = Client::where('email', $request->email)->where('token', $request->token)->first();
@@ -206,8 +208,8 @@ class ClientController extends Controller
     {
         $client = Auth::guard('client')->user();
         $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required|confirmed'
+            'old_password' => ['required'],
+            'new_password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
         if (!Hash::check($request->old_password, $client->password)) {

@@ -11,6 +11,9 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
+   <!-- Favicon Icon -->
+   <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('frontend/img/images/Logo.png') }}">
+
   <style>
     * {
       box-sizing: border-box;
@@ -219,7 +222,7 @@
     <!-- Left: Form -->
     <div class="left">
       <div class="logo-header">
-        <img src="{{ asset('frontend/img/logo.png') }}" alt="EpicEats Logo" class="logo">
+        <img src="{{ asset('frontend/img/images/Logo.png') }}" alt="EpicEats Logo" class="logo">
         <div class="form-header">
           <h2>Owner Registration</h2>
           <h4>Welcome!</h4>
@@ -282,7 +285,7 @@
     </div>
   </div>
   <div class="right">
-    <img src="{{ asset('frontend/img/client-register.png') }}" alt="User Illustration">
+    <img src="{{ asset('frontend/img/images/ClientRegister.png') }}" alt="User Illustration">
   </div>
   <script>
     const togglePassword = document.getElementById("togglePassword");
