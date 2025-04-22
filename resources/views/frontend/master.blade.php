@@ -8,7 +8,7 @@
        <meta name="author" content="Askbootstrap">
        <title>Epic Eats - Online Food Ordering Website</title>
        <!-- Favicon Icon -->
-       <link rel="icon" type="image/png" href="{{ asset('frontend/img/logo.png') }}">
+       <link rel="icon" type="image/png" href="{{ asset('frontend/img/images/Logo.png') }}">
        <!-- Bootstrap core CSS-->
        <link href="{{ asset('frontend/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
        <!-- Font Awesome-->
