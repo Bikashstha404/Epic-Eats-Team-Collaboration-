@@ -1,6 +1,7 @@
 @extends('frontend.dashboard.dashboard')
  @section('dashboard')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
  
 @php
  $products = App\Models\Product::where('client_id',$client->id)->limit(3)->get();
@@ -18,7 +19,8 @@
      </div>
      <div class="restaurant-detailed-header">
         <div class="container">
-           <div class="row d-flex align-items-end">
+  
+        <div class="row d-flex align-items-end">
               <div class="col-md-8">
                  <div class="restaurant-detailed-header-left">
                     <img class="img-fluid mr-3 float-left" alt="osahan" src="{{ asset('upload/client_images/' . $client->photo ) }}">
@@ -73,7 +75,8 @@
   </section>
   <section class="offer-dedicated-body pt-2 pb-2 mt-4 mb-4">
      <div class="container">
-        <div class="row">
+       
+     <div class="row">
            <div class="col-md-8">
               <div class="offer-dedicated-body-left">
                  <div class="tab-content" id="pills-tabContent">
