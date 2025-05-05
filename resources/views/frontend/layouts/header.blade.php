@@ -132,10 +132,8 @@
                         class="nav-epics-pic"> My Account
                   </a>
                   <div class="dropdown-menu dropdown-menu-right shadow-sm border-0">
-                     <a class="dropdown-item" href="{{ route('dashboard') }}"><i class="icofont-food-cart"></i>
-                        Dashboard</a>
-                     <a class="dropdown-item" href="{{ route('user.logout') }}"><i class="icofont-sale-discount"></i>
-                        Logout </a>
+                     <a class="dropdown-item" href="{{ route('dashboard') }}"><i class="icofont-user-alt-3 mr-2"></i> Profile</a>
+                     <a class="dropdown-item" href="{{ route('user.logout') }}"><i class="icofont-logout mr-2"></i> Logout </a>
                   </div>
                </li>
                @else
