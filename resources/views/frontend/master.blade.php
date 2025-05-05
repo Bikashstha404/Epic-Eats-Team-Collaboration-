@@ -38,7 +38,7 @@
        </div>
        <!-- @include('frontend.layouts.ads') -->
  
-       <!-- @yield('content') -->
+       @yield('content')
  
  
        @include('frontend.layouts.footer')
