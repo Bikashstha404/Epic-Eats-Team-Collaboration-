@@ -5,7 +5,7 @@
         <div class="section-header text-center">
            <h2>Popular Brands</h2>
            <h2>Popular Restaurants</h2>
-           <p>Top restaurants, cafes, pubs, and bars in Ludhiana, based on trends</p>
+           <p>Top restaurants, cafes, pubs, and bars in Kathmandu, based on trends</p>
            <span class="line"></span>
         </div>
         <div class="row">

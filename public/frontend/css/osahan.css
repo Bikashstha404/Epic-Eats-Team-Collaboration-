@@ -139,7 +139,7 @@ img{
     font-weight: 300;
 }
 .btn-login {
-    font-size: 0.9rem;
+    font-size:1.5rem;
     letter-spacing: 0.05rem;
     padding: 0.75rem 1rem;
     border-radius: 2rem;
@@ -227,6 +227,12 @@ img{
     -webkit-backdrop-filter: saturate(180%) blur(5px);
     backdrop-filter: saturate(180%) blur(5px);
 }
+.homepage-search-form {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+
+}
 .homepage-header .osahan-nav {
     background: white !important;
 }
@@ -241,7 +247,7 @@ img{
     border: none;
 }
 .homepage-search-form .form-group {
-    position: relative;
+    position: center;
 }
 .homepage-search-form .locate-me {
     background: #ececec none repeat scroll 0 0;
@@ -1273,6 +1279,7 @@ p{
     margin-top: 15px;
 }
 }
+
 /* Small devices (landscape phones, 576px and up) */
  @media (min-width: 576px) and (max-width: 767.98px) {
 .dropdown-menu {
