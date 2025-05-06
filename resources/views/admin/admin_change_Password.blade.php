@@ -1,6 +1,26 @@
 @extends('admin.admin_dashboard')
  @section('admin')
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+ <style>
+    .password-wrapper {
+        position: relative;
+    }
+    .password-wrapper input {
+        padding-right: 2.5rem;
+    }
+    .password-wrapper .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 0.75rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #999;
+    }
+    .password-wrapper .toggle-password:hover {
+        color: #000;
+    }
+</style>
  
  <div class="page-content">
      <div class="container-fluid">
@@ -61,61 +81,91 @@
  <div class="card-body p-4">
  <form action="{{ route('admin.password.update') }}" method="post" enctype="multipart/form-data">
      @csrf
-     
- <div class="row">
-     <div class="col-lg-6">
-         <div>
-             <div class="mb-3">
-                 <label for="example-text-input" class="form-label">Old Password</label>
-                 <input class="form-control @error('old_password') is-invalid @enderror" type="password" name="old_password" id="old_password">
-                 @error('old_password')
-                     <span class="text-danger">{{ $message }}</span>
-                 @enderror
-             </div>
- 
-             <div class="mb-3">
-                 <label for="example-text-input" class="form-label">New Password</label>
-                 <input class="form-control @error('new_password') is-invalid @enderror" type="password" name="new_password" id="new_password">
-                 @error('new_password')
-                     <span class="text-danger">{{ $message }}</span>
-                 @enderror
-             </div>
- 
-             <div class="mb-3">
-                 <label for="example-text-input" class="form-label">Confirm New Password</label>
-                 <input class="form-control" type="password" name="new_password_confirmation" id="new_password_confirmation">
-             </div>
-             <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
-         </div>
-     </div>
- 
-     
- </div>
- </form>
- </div>
- 
- 
- 
- 
- 
- 
- 
- 
- 
-                
-                 <!-- end tab content -->
-             </div>
-             <!-- end col -->
- 
-             
-             <!-- end col -->
-         </div>
-         <!-- end row -->
-         
-     </div> <!-- container-fluid -->
- </div>
- 
-  
- 
- 
- @endsection
+     <!-- Old Password -->
+     <div class="mb-3">
+                            <label class="form-label">Old Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" class="form-control"
+                                       name="old_password" id="old_password">
+                                <i class="fa fa-eye toggle-password" toggle="#old_password"></i>
+                            </div>
+                            @error('old_password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <!-- New Password -->
+                        <div class="mb-3">
+                            <label class="form-label">New Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" class="form-control"
+                                       name="new_password" id="new_password">
+                                <i class="fa fa-eye toggle-password" toggle="#new_password"></i>
+                            </div>
+                            @error('new_password')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="mb-3">
+                            <label class="form-label">Confirm New Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" class="form-control" name="new_password_confirmation" id="new_password_confirmation">
+                                <i class="fa fa-eye toggle-password" toggle="#new_password_confirmation"></i>
+                            </div>
+                        </div>
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+
+                <!-- JS for toggling eye icon -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".toggle-password").forEach(icon => {
+            icon.addEventListener("click", function () {
+                const input = document.querySelector(this.getAttribute("toggle"));
+                if (input.type === "password") {
+                    input.type = "text";
+                    this.classList.remove("fa-eye");
+                    this.classList.add("fa-eye-slash");
+                } else {
+                    input.type = "password";
+                    this.classList.remove("fa-eye-slash");
+                    this.classList.add("fa-eye");
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+                <!-- end tab content -->
+            </div>
+            <!-- end col -->
+
+
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+
+    </div> <!-- container-fluid -->
+</div>
+
+
+
+
+@endsection
