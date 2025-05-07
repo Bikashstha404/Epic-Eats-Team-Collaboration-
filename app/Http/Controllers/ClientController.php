@@ -151,11 +151,11 @@ class ClientController extends Controller
         $data = Client::find($id);
 
         $data->name = $request->name;
-        $data->email = $request->email;
+        // $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;
-        // $data->city_id = $request->city_id;
-        // $data->shop_info = $request->shop_info; 
+        $data->city_id = $request->city_id;
+        $data->shop_info = $request->shop_info; 
 
         $oldPhotoPath = $data->photo;
 

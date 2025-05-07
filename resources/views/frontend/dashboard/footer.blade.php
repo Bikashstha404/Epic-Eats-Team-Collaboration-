@@ -11,11 +11,11 @@
         <div class="row">
             <div class="col-md-12">
                 <h5 class="fw-bold mb-3"
-                    style="font-family: 'Poppins', sans-serif; font-size: 30px; color: #fff;">
+                    style="font-family: 'Poppins', sans-serif; font-weight:bolder; font-size: 30px; color: #fff;">
                     About Us
                 </h5>
                 <p class="mb-0 px-2"
-                   style="font-family: 'Roboto', sans-serif; font-size: 20px; max-width: 800px; margin: 0 auto; color: #fff;">
+                   style="font-family: 'Roboto', sans-serif; font-size: 16px; max-width: 800px; margin: 0 auto; color: #fff;">
                     Hungry? We’ve got you! Your favorite restaurants, delivered fast and fresh — wherever you are.
                     Easy ordering, quick delivery, and endless delicious options. Because great food should never wait!
                 </p>
