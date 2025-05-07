@@ -204,9 +204,15 @@ Route::middleware(['client','status'])->group(function () {
     });
 
     Route::controller(ManageOrderController::class)->group(function(){
-        Route::get('/all/client/orders', 'AllClientOrders')->name('all.client.orders'); 
-        Route::get('/client/order/details/{id}', 'ClientOrderDetails')->name('client.order.details'); 
+        Route::get('/all/client/orders', 'AllClientOrders')->name('all.client.orders');
+        Route::get('/client/order/details/{id}', 'ClientOrderDetails')->name('client.order.details');
+    
+        // 🆕 Status changing routes for clients
+        Route::get('/client/order/pending-to-confirm/{id}', 'ClientPendingToConfirm')->name('client.pending.to.confirm');
+        Route::get('/client/order/confirm-to-processing/{id}', 'ClientConfirmToProcessing')->name('client.confirm.to.processing');
+        Route::get('/client/order/processing-to-delivered/{id}', 'ClientProcessingToDelivered')->name('client.processing.to.delivered');
     });
+    
     Route::controller(ReviewController::class)->group(function(){
         Route::get('/client/all/reviews', 'ClientAllReviews')->name('client.all.reviews'); 
         
