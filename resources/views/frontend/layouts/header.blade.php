@@ -145,6 +145,8 @@
                </li>
                @endauth
 
+       
+
                @php
                $total = 0;
                $cart = session()->get('cart', []);
