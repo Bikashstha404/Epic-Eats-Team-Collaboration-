@@ -31,6 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/change/password', [UserController::class, 'ChangePassword'])->name('change.password');
     Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
+    // Get Wishlist data for user 
+    Route::get('/all/wishlist', [HomeController::class, 'AllWishlist'])->name('all.wishlist');
+    Route::get('/remove/wishlist/{id}', [HomeController::class, 'RemoveWishlist'])->name('remove.wishlist');
+
 });
 
 Route::controller(ManageOrderController::class)->group(function(){
@@ -200,9 +204,15 @@ Route::middleware(['client','status'])->group(function () {
     });
 
     Route::controller(ManageOrderController::class)->group(function(){
-        Route::get('/all/client/orders', 'AllClientOrders')->name('all.client.orders'); 
-        Route::get('/client/order/details/{id}', 'ClientOrderDetails')->name('client.order.details'); 
+        Route::get('/all/client/orders', 'AllClientOrders')->name('all.client.orders');
+        Route::get('/client/order/details/{id}', 'ClientOrderDetails')->name('client.order.details');
+    
+        // 🆕 Status changing routes for clients
+        Route::get('/client/order/pending-to-confirm/{id}', 'ClientPendingToConfirm')->name('client.pending.to.confirm');
+        Route::get('/client/order/confirm-to-processing/{id}', 'ClientConfirmToProcessing')->name('client.confirm.to.processing');
+        Route::get('/client/order/processing-to-delivered/{id}', 'ClientProcessingToDelivered')->name('client.processing.to.delivered');
     });
+    
     Route::controller(ReviewController::class)->group(function(){
         Route::get('/client/all/reviews', 'ClientAllReviews')->name('client.all.reviews'); 
         
@@ -216,6 +226,7 @@ Route::get('/changeStatus', [RestaurantController::class, 'ChangeStatus']);
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/restaurant/details/{id}', 'RestaurantDetails')->name('res.details');
+    Route::post('/add-wish-list/{id}', 'AddWishList'); 
 });
 
 Route::controller(CartController::class)->group(function(){

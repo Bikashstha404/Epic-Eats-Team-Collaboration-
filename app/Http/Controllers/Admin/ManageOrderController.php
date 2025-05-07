@@ -127,6 +127,49 @@
     }
      //End Method 
 
+     public function ClientPendingToConfirm($id){
+        $clientId = Auth::guard('client')->id();
+        $orderItem = OrderItem::where('order_id', $id)->where('client_id', $clientId)->first();
+    
+        if (!$orderItem) abort(403, 'Unauthorized action.');
+    
+        Order::find($id)->update(['status' => 'confirm']);
+    
+        return redirect()->back()->with([
+            'message' => 'Order Confirmed Successfully',
+            'alert-type' => 'success'
+        ]);
+    }
+    
+    public function ClientConfirmToProcessing($id){
+        $clientId = Auth::guard('client')->id();
+        $orderItem = OrderItem::where('order_id', $id)->where('client_id', $clientId)->first();
+    
+        if (!$orderItem) abort(403, 'Unauthorized action.');
+    
+        Order::find($id)->update(['status' => 'processing']);
+    
+        return redirect()->back()->with([
+            'message' => 'Order Moved to Processing',
+            'alert-type' => 'success'
+        ]);
+    }
+    
+    public function ClientProcessingToDelivered($id){
+        $clientId = Auth::guard('client')->id();
+        $orderItem = OrderItem::where('order_id', $id)->where('client_id', $clientId)->first();
+    
+        if (!$orderItem) abort(403, 'Unauthorized action.');
+    
+        Order::find($id)->update(['status' => 'delivered']);
+    
+        return redirect()->back()->with([
+            'message' => 'Order Delivered Successfully',
+            'alert-type' => 'success'
+        ]);
+    }
+    
+
 
 
 
