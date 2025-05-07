@@ -65,9 +65,20 @@
                      @endif
                     </td>                
                 
-                 
-                    <td><a href="{{ route('client.order.details',$order->id) }}" class="btn btn-info waves-effect waves-light"> <i class="fas fa-eye"></i> </a> 
-                 </td> 
+                    <td>
+    <a href="{{ route('client.order.details',$order->id) }}" class="btn btn-info btn-sm">
+        <i class="fas fa-eye"></i>
+    </a>
+
+    @if ($order->status == 'Pending')
+        <a href="{{ route('client.pending.to.confirm', $order->id) }}" class="btn btn-primary btn-sm">Confirm</a>
+    @elseif ($order->status == 'confirm')
+        <a href="{{ route('client.confirm.to.processing', $order->id) }}" class="btn btn-warning btn-sm">Processing</a>
+    @elseif ($order->status == 'processing')
+        <a href="{{ route('client.processing.to.delivered', $order->id) }}" class="btn btn-success btn-sm">Delivered</a>
+    @endif
+</td>
+
              </tr>
              @endforeach    
              

@@ -11,7 +11,7 @@
         /* === Homepage Banner Styles === */
         .homepage-search-block {
             position: relative;
-            height: 600px;
+            height: 770px;
             overflow: hidden;
         }
 
@@ -57,10 +57,10 @@
         }
 
         .btn-gradient {
-            background: linear-gradient(to right, #007bff, #00d1b2);
+            background: linear-gradient(to right,rgb(255, 85, 0),rgb(209, 84, 0));
             color: #fff;
             padding: 8px 20px;
-            border-radius: 30px;
+            border-radius: 4px;
             text-align: center;
             text-decoration: none;
             font-size: 1.25rem;
@@ -119,7 +119,7 @@
                 <div class="col-lg-10 text-center">
                     <!-- Title -->
                     <div class="homepage-search-title text-white">
-                        <h1 class="mb-3 display-4 font-weight-bold">
+                        <h1 class="mb-3 display-4 font-weight-bold" style="color: white">
                             Discover the best food & drink varieties in a swipe
                         </h1>
                         <h5 class="mb-5 text-white-50 font-weight-normal">
