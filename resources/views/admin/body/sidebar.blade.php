@@ -1,3 +1,9 @@
+<style>
+.vertical-menu {
+    background-color: #1e1e2f !important; /* Replace with your desired color */
+}
+</style>
+
 <div class="vertical-menu">
 
     <div data-simplebar class="h-100">
