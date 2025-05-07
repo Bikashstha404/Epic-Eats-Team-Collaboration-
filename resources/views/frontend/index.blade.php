@@ -34,8 +34,7 @@
                <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" style="min-height: 360px;">
                   <div class="list-card-image">
                      <div class="star position-absolute"><span class="badge badge-success"><i class="icofont-star"></i>{{ number_format($avarage,1) }} ({{ count($reviewcount ) }}+)</span></div>
-                     <!-- <div class="favourite-heart text-danger position-absolute"><a href="detail.html"><i class="icofont-heart"></i></a></div> -->
-                     <!-- <div class="member-plan position-absolute"><span class="badge badge-dark">Promoted</span></div> -->
+                     <div class="favourite-heart text-danger position-absolute"><a aria-label="Add to Wishlist" onclick="addWishList({{$client->id}})" ><i class="icofont-heart"></i></a></div>
                      <a href="{{ route('res.details',$client->id) }}">
                         <img src="{{ !empty($client->photo) ? asset('upload/client_images/' . $client->photo) : asset('upload/no_image.jpg') }}" class="img-fluid item-img" style="min-height: 200px; width: 300px; height:200px;" alt="Profile Image">
                      </a>
@@ -46,9 +45,6 @@
                         <p class="text-gray mb-3"> {{ $menuNamesString  }}</p>
                         <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="icofont-wall-clock"></i> 20–25 min</span> </p>
                      </div>
-                     <!-- <div class="list-card-badge">
-                        <span class="badge badge-success">OFFER</span> <small>65% off </small>
-                     </div> -->
                   </div>
                </div>
             </div>
