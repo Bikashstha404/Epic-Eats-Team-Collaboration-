@@ -11,7 +11,7 @@
         /* === Homepage Banner Styles === */
         .homepage-search-block {
             position: relative;
-            height: 770px;
+            height: 650px;
             overflow: hidden;
         }
 
@@ -31,7 +31,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Dark overlay for better text contrast */
+            background: rgba(0, 0, 0, 0.4);
+            /* Dark overlay for better text contrast */
             z-index: 2;
         }
 
@@ -57,7 +58,7 @@
         }
 
         .btn-gradient {
-            background: linear-gradient(to right,rgb(255, 85, 0),rgb(209, 84, 0));
+            background: linear-gradient(to right, #ffa45b, #ff864b);
             color: #fff;
             padding: 8px 20px;
             border-radius: 4px;
@@ -67,22 +68,21 @@
         }
 
         .btn-gradient:hover {
-            background: linear-gradient(to right, #0062cc, #00c4a1);
+            background: linear-gradient(to right, #ff9c4b, #ff6f3c);
         }
 
-        /* Adjust the input field and icon inside the search bar */
-        .homepage-search-form .form-group {
+        .homepage-search .form-group {
             position: relative;
         }
 
-        .homepage-search-form .form-group input {
+        .homepage-search .form-group input {
             padding-right: 40px;
             border-radius: 20px;
             font-size: 1rem;
             height: 50px;
         }
 
-        .homepage-search-form .form-group i {
+        .homepage-search .form-group i {
             position: absolute;
             top: 50%;
             right: 25px;
@@ -92,13 +92,13 @@
         }
 
         /* Style for smaller search button */
-        .homepage-search-form .col-lg-1 .btn {
+        .homepage-search .col-lg-1 .btn {
             padding: 10px 15px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: bolder;
             min-width: 100px;
             width: auto;
-            border-radius: 30px;
+            border-radius: 20px;
         }
     </style>
 </head>
@@ -128,15 +128,15 @@
                     </div>
 
                     <!-- Search Form -->
-                    <div class="homepage-search-form">
+                    <div class="homepage-search">
                         <form>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-8 col-md-9 col-sm-12 form-group position-relative">
-                                    <input type="text" placeholder="Search here..." class="form-control form-control-lg rounded-pill">
+                                    <input type="text" placeholder="Search here..." class="form-control form-control-lg">
                                     <i class="fas fa-search"></i>
                                 </div>
                                 <div class="col-lg-1 col-md-3 col-sm-12 form-group">
-                                    <a href="listing.html" class="btn btn-gradient rounded-medium text-white">
+                                    <a href="listing.html" class="btn btn-gradient text-white">
                                         Search
                                     </a>
                                 </div>

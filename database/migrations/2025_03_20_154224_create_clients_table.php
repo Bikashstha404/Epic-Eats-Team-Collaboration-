@@ -22,6 +22,9 @@
              $table->string('photo')->nullable();
              $table->string('phone')->nullable();
              $table->string('address')->nullable();
+            //  $table->string('city_id')->nullable();
+            //  $table->string('shop_info')->nullable();
+            //  $table->string('cover_photo')->nullable();
              $table->string('role')->default('client');
              $table->string('status')->default('1');
              $table->rememberToken();

@@ -107,27 +107,43 @@ $menuNamesString = implode(' . ',$menuNames);
                            <!-- Scrollable Flex Container -->
                            <div id="populerScroll" class="d-flex overflow-hidden" style="scroll-behavior: smooth;">
                               @foreach ($populers as $populer)
-                              <div class="card shadow-sm border-0 me-3" style="min-width: 200px; flex-shrink: 0;">
+                              <div class="card shadow-sm me-3" style="min-width: 250px; flex-shrink: 0; border: 1px solid black">
                                  <img src="{{ asset($populer->image) }}"
                                     class="card-img-top"
                                     alt="{{ $populer->name }}"
                                     style="height: 125px; object-fit: cover; border-radius: 5px 5px 0 0;">
+
                                  <div class="card-body p-3">
                                     <h6 class="card-title text-start mb-1">{{ $populer->name }}</h6>
+
+                                    <div class="text-start mb-2">
+                                       @if (is_null($populer->price))
+                                       <span class="text-muted">Price: Not available</span>
+                                       @elseif (is_null($populer->discount_price))
+                                       Price: ${{ $populer->price }}
+                                       @else
+                                       Price:
+                                       <small class="text-muted"><del>${{ $populer->price }}</del></small>
+                                       <strong class="text-success ms-1">${{ $populer->discount_price }}</strong>
+                                       @endif
+                                    </div>
+
                                     <div class="d-flex justify-content-between align-items-center">
-                                       <div class="text-start mb-0">
-                                          @if ($populer->discount_price == NULL)
-                                          Price: <strong>${{ $populer->price }}</strong>
+                                       <div>
+                                          @if (is_null($populer->size))
+                                          Size: -------
                                           @else
-                                          Price:
-                                          <small class="text-muted"><del>${{ $populer->price }}</del></small>
-                                          <strong class="text-success ms-1">${{ $populer->discount_price }}</strong>
+                                          Size: <span class="ms-1">{{ $populer->size }} cm</span>
                                           @endif
                                        </div>
-                                       <a class="btn btn-outline-secondary btn-sm" href="{{ route('add_to_cart', $populer->id) }}">Add</a>
+                                       <a class="btn btn-outline-secondary btn-sm"
+                                          href="{{ route('add_to_cart', $populer->id) }}">
+                                          Add
+                                       </a>
                                     </div>
                                  </div>
                               </div>
+
                               @endforeach
                               <button class="btn btn-light position-absolute top-50 start-0 translate-middle-y"
                                  onclick="scrollPopulers(-1)"
@@ -171,51 +187,67 @@ $menuNamesString = implode(' . ',$menuNames);
                      <div class="position-relative">
                         <h5 class="mb-4 mt-3">Best Sellers</h5>
 
+                        <!-- Scrollable container with buttons on sides -->
                         <div class="position-relative">
-                           <!-- Left Scroll Button -->
-                           <button class="btn btn-light position-absolute top-50 start-0 translate-middle-y"
-                              onclick="scrollBestsellers(-1)"
-                              style="z-index: 2; box-shadow: 0 0 5px rgba(0,0,0,0.2); font-size: larger;">
-                              ‹
-                           </button>
-
-                           <!-- Right Scroll Button -->
-                           <button class="btn btn-light position-absolute top-50 end-0 translate-middle-y"
-                              onclick="scrollBestsellers(1)"
-                              style="z-index: 2; box-shadow: 0 0 5px rgba(0,0,0,0.2); font-size: larger;">
-                              ›
-                           </button>
-
                            <!-- Scrollable Flex Container -->
-                           <div id="bestsellerScroll" class="d-flex overflow-hidden px-4" style="scroll-behavior: smooth;">
+                           <div id="bestsellerScroll" class="d-flex overflow-hidden" style="scroll-behavior: smooth;">
                               @foreach ($bestsellers as $bestseller)
-                              <div class="card shadow-sm border-0 me-3" style="min-width: 200px; flex-shrink: 0;">
+                              <div class="card shadow-sm me-3" style="min-width: 250px; flex-shrink: 0; border: 1px solid black">
                                  <img src="{{ asset($bestseller->image) }}"
                                     class="card-img-top"
                                     alt="{{ $bestseller->name }}"
                                     style="height: 125px; object-fit: cover; border-radius: 5px 5px 0 0;">
+
                                  <div class="card-body p-3">
                                     <h6 class="card-title text-start mb-1">{{ $bestseller->name }}</h6>
+
+                                    <div class="text-start mb-2">
+                                       @if (is_null($bestseller->price))
+                                       <span class="text-muted">Price: Not available</span>
+                                       @elseif (is_null($bestseller->discount_price))
+                                       Price: ${{ $bestseller->price }}
+                                       @else
+                                       Price:
+                                       <small class="text-muted"><del>${{ $bestseller->price }}</del></small>
+                                       <strong class="text-success ms-1">${{ $bestseller->discount_price }}</strong>
+                                       @endif
+                                    </div>
+
                                     <div class="d-flex justify-content-between align-items-center">
-                                       <div class="text-start mb-0">
-                                          @if ($bestseller->discount_price == NULL)
-                                          Price: <strong>${{ $bestseller->price }}</strong>
+                                       <div>
+                                          @if (is_null($bestseller->size))
+                                          Size: -------
                                           @else
-                                          Price:
-                                          <small class="text-muted"><del>${{ $bestseller->price }}</del></small>
-                                          <strong class="text-success ms-1">${{ $bestseller->discount_price }}</strong>
+                                          Size: <span class="ms-1">{{ $bestseller->size }}cm</span>
                                           @endif
                                        </div>
-                                       <a class="btn btn-outline-secondary btn-sm" href="{{ route('add_to_cart', $bestseller->id) }}">Add</a>
+                                       <a class="btn btn-outline-secondary btn-sm"
+                                          href="{{ route('add_to_cart', $bestseller->id) }}">
+                                          Add
+                                       </a>
                                     </div>
                                  </div>
                               </div>
+
                               @endforeach
+
+                              <!-- Left Scroll Button -->
+                              <button class="btn btn-light position-absolute top-50 start-0 translate-middle-y"
+                                 onclick="scrollBestsellers(-1)"
+                                 style="z-index: 2; box-shadow: 0 0 5px rgba(0,0,0,0.2); font-size:larger">
+                                 ‹
+                              </button>
+
+                              <!-- Right Scroll Button -->
+                              <button class="btn btn-light position-absolute top-50 end-0 translate-middle-y"
+                                 onclick="scrollBestsellers(1)"
+                                 style="z-index: 2; box-shadow: 0 0 5px rgba(0,0,0,0.2); font-size:larger">
+                                 ›
+                              </button>
                            </div>
                         </div>
                      </div>
 
-                     <!-- JavaScript for Best Sellers Scroll -->
                      <script>
                         function scrollBestsellers(direction) {
                            const container = document.getElementById('bestsellerScroll');
@@ -227,8 +259,6 @@ $menuNamesString = implode(' . ',$menuNames);
                         }
                      </script>
                      @endif
-
-
 
 
                      @foreach ($menus as $menu)
@@ -244,9 +274,17 @@ $menuNamesString = implode(' . ',$menuNames);
                                  <div class="media">
                                     <img class="mr-3 rounded-pill" src="{{ asset($product->image) }}" alt="Generic placeholder image">
                                     <div class="media-body">
-                                       <h6 class="mb-1">{{$product->name}}</h6>
-                                       <p class="text-gray mb-0">${{ $product->price }} ({{ $product->size ?? '' }} cm)</p>
+                                       <h6 class="mb-1">{{ $product->name }}</h6>
 
+                                       @if (is_null($product->price) && is_null($product->size))
+                                       <p class="text-muted mb-0">Price: ---, Size: ---</p>
+                                       @elseif (is_null($product->price))
+                                       <p class="text-muted mb-0">Price: ---, Size: {{ $product->size }} cm</p>
+                                       @elseif (is_null($product->size))
+                                       <p class="text-muted mb-0">Price: ${{ $product->price }}, Size: ---</p>
+                                       @else
+                                       <p class="text-gray mb-0">Price: ${{ $product->price }}, Size: {{ $product->size }} cm</p>
+                                       @endif
                                     </div>
                                  </div>
                               </div>
@@ -260,46 +298,45 @@ $menuNamesString = implode(' . ',$menuNames);
                   </div>
 
                   <div class="tab-pane fade" id="pills-gallery" role="tabpanel" aria-labelledby="pills-gallery-tab">
-                     <div id="gallery" class="bg-white rounded shadow-sm p-4 mb-4">
+                     <div id="gallery" class="bg-white rounded p-4 mb-4">
                         <div class="restaurant-slider-main position-relative homepage-great-deals-carousel">
+
                            <div class="owl-carousel owl-theme homepage-ad">
 
                               @foreach ($gallerys as $index => $gallery)
 
                               <div class="item">
-                                 <img class="img-fluid" src="{{ asset($gallery->gallery_img) }}">
+                                 <img class="img-fluid" src="{{ asset($gallery->gallery_img) }}" style="width: 100%; height: 70vh;">
                                  <div class="position-absolute restaurant-slider-pics bg-dark text-white">{{ $index + 1 }} of {{ $gallerys->count() }} Photos</div>
                               </div>
                               @endforeach
 
                            </div>
-
-
                         </div>
                      </div>
                   </div>
+
+
                   <div class="tab-pane fade" id="pills-restaurant-info" role="tabpanel" aria-labelledby="pills-restaurant-info-tab">
                      <div id="restaurant-info" class="bg-white rounded shadow-sm p-4 mb-4">
-                        <div class="address-map float-right ml-5">
+                        <!-- <div class="address-map float-right ml-5">
                            <div class="mapouter">
                               <div class="gmap_canvas"><iframe width="300" height="170" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=9&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
                            </div>
-                        </div>
-                        <h5 class="mb-4">Restaurant Info</h5>
-                        <p class="mb-3">{{ $client->address }}
-
-                        </p>
+                        </div> -->
+                        <h4 class="mb-2">Restaurant Info</h4>
+                        <p class="mb-3">{{ $client->address }}</p>
                         <p class="mb-2 text-black"><i class="icofont-phone-circle text-primary mr-2"></i> {{ $client->phone }}</p>
                         <p class="mb-2 text-black"><i class="icofont-email text-primary mr-2"></i> {{ $client->email }}</p>
-                        <p class="mb-2 text-black"><i class="icofont-clock-time text-primary mr-2"></i> {{ $client->shop_info }}
+                        <!-- <p class="mb-2 text-black"><i class="icofont-clock-time text-primary mr-2"></i> {{ $client->city_id }}
                            <span class="badge badge-success"> OPEN NOW </span>
-                        </p>
-                        <hr class="clearfix">
-                        <p class="text-black mb-0">You can also check the 3D view by using our menue map clicking here &nbsp;&nbsp;&nbsp; <a class="text-info font-weight-bold" href="#">Venue Map</a></p>
-                        <hr class="clearfix">
+                        </p> -->
+                        <!-- <hr class="clearfix"> -->
+                        <!-- <p class="text-black mb-0">You can also check the 3D view by using our menue map clicking here &nbsp;&nbsp;&nbsp; <a class="text-info font-weight-bold" href="#">Venue Map</a></p> -->
+                        <!-- <hr class="clearfix"> -->
                         <h5 class="mt-4 mb-4">More Info</h5>
-                        <p class="mb-3">Dal Makhani, Panneer Butter Masala, Kadhai Paneer, Raita, Veg Thali, Laccha Paratha, Butter Naan</p>
-                        <div class="border-btn-main mb-4">
+                        <p class="mb-3">{{$client->shop_info}}</p>
+                        <!-- <div class="border-btn-main mb-4">
                            <a class="border-btn text-success mr-2" href="#"><i class="icofont-check-circled"></i> Breakfast</a>
                            <a class="border-btn text-danger mr-2" href="#"><i class="icofont-close-circled"></i> No Alcohol Available</a>
                            <a class="border-btn text-success mr-2" href="#"><i class="icofont-check-circled"></i> Vegetarian Only</a>
@@ -307,50 +344,12 @@ $menuNamesString = implode(' . ',$menuNames);
                            <a class="border-btn text-success mr-2" href="#"><i class="icofont-check-circled"></i> Breakfast</a>
                            <a class="border-btn text-danger mr-2" href="#"><i class="icofont-close-circled"></i> No Alcohol Available</a>
                            <a class="border-btn text-success mr-2" href="#"><i class="icofont-check-circled"></i> Vegetarian Only</a>
-                        </div>
+                        </div> -->
                      </div>
                   </div>
 
-                  <div class="tab-pane fade" id="pills-book" role="tabpanel" aria-labelledby="pills-book-tab">
-                     <div id="book-a-table" class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
-                        <h5 class="mb-4">Book A Table</h5>
-                        <form>
-                           <div class="row">
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label>Full Name</label>
-                                    <input class="form-control" type="text" placeholder="Enter Full Name">
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label>Email Address</label>
-                                    <input class="form-control" type="text" placeholder="Enter Email address">
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label>Mobile number</label>
-                                    <input class="form-control" type="text" placeholder="Enter Mobile number">
-                                 </div>
-                              </div>
-                              <div class="col-sm-6">
-                                 <div class="form-group">
-                                    <label>Date And Time</label>
-                                    <input class="form-control" type="text" placeholder="Enter Date And Time">
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="form-group text-right">
-                              <button class="btn btn-primary" type="button"> Submit </button>
-                           </div>
-                        </form>
-                     </div>
-                  </div>
                   <div class="tab-pane fade" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">
-                     <div id="ratings-and-reviews" class="bg-white rounded shadow-sm p-4 mb-4 clearfix restaurant-detailed-star-rating">
+                     <!-- <div id="ratings-and-reviews" class="bg-white rounded shadow-sm p-4 mb-4 clearfix restaurant-detailed-star-rating">
                         <span class="star-rating float-right">
                            <a href="#"><i class="icofont-ui-rating icofont-2x active"></i></a>
                            <a href="#"><i class="icofont-ui-rating icofont-2x active"></i></a>
@@ -359,18 +358,16 @@ $menuNamesString = implode(' . ',$menuNames);
                            <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
                         </span>
                         <h5 class="mb-0 pt-1">Rate this Place</h5>
-                     </div>
-
-
+                     </div> -->
 
                      <div class="bg-white rounded shadow-sm p-4 mb-4 clearfix graph-star-rating">
-                        <h5 class="mb-4">Ratings and Reviews</h5>
+                        <h5 class="mb-2">Ratings and Reviews</h5>
                         <div class="graph-star-rating-header">
                            <div class="star-rating">
                               @for ($i = 1; $i <= 5; $i++)
-                                 <a href="#"><i class="icofont-ui-rating {{ $i <= round($roundedAverageRating) ? 'active' : ''}}"></i></a>
+                                 <i class="icofont-ui-rating {{ $i <= round($roundedAverageRating) ? 'active' : ''}}"></i>
                                  @endfor
-                                 <b class="text-black ml-2">{{ $totalReviews }}</b>
+                                 <span class="text-black ml-2">{{ $totalReviews }} reviews</span>
                            </div>
                            <p class="text-black mb-4 mt-2">Rated {{$roundedAverageRating}} out of 5</p>
                         </div>
@@ -396,15 +393,15 @@ $menuNamesString = implode(' . ',$menuNames);
                         </div>
 
 
-                        <div class="graph-star-rating-footer text-center mt-3 mb-3">
+                        <!-- <div class="graph-star-rating-footer text-center mt-3 mb-3">
                            <button type="button" class="btn btn-outline-primary btn-sm">Rate and Review</button>
-                        </div>
+                        </div> -->
                      </div>
 
 
 
                      <div class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
-                        <a href="#" class="btn btn-outline-primary btn-sm float-right">Top Rated</a>
+                        <!-- <a href="#" class="btn btn-outline-primary btn-sm float-right">Top Rated</a> -->
                         <h5 class="mb-1">All Ratings and Reviews</h5>
                         <style>
                            .icofont-ui-rating {
@@ -420,45 +417,62 @@ $menuNamesString = implode(' . ',$menuNames);
                         $reviews = App\Models\Review::where('client_id',$client->id)->where('status',1)->latest()->limit(5)->get();
                         @endphp
 
-                        @foreach ($reviews as $review)
-
-                        <div class="reviews-members pt-4 pb-4">
-                           <div class="media">
-                              <a href="#"><img alt="Generic placeholder image" src="{{ (!empty($review->user->photo)) ? url('upload/user_images/'.$review->user->photo) : url('upload/no_image.jpg') }}" class="mr-3 rounded-pill"></a>
-                              <div class="media-body">
-                                 <div class="reviews-members-header">
-                                    <span class="star-rating float-right">
-                                       @php
-                                       $rating = $review->rating ?? 0;
-                                       @endphp
+                        @foreach ($reviews as $index => $review)
+                        <div class="reviews-members py-4 review-item {{ $index >= 3 ? 'd-none extra-review' : '' }}" style="border-bottom: 1px solid black;">
+                           <!-- Review content -->
+                           <div class="d-flex align-items-start">
+                              <a href="#">
+                                 <img alt="User image"
+                                    src="{{ (!empty($review->user->photo)) ? url('upload/user_images/'.$review->user->photo) : url('upload/no_image.jpg') }}"
+                                    class="rounded-circle me-3"
+                                    style="width: 60px; height: 60px; object-fit: cover;">
+                              </a>
+                              <div class="flex-grow-1">
+                                 <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0">
+                                       <a class="text-dark fw-bold" href="#">{{ $review->user->name }}</a>
+                                    </h6>
+                                    <div class="star-rating">
+                                       @php $rating = $review->rating ?? 0; @endphp
                                        @for ($i = 1; $i <= 5; $i++)
-                                          @if ($i <=$rating)
-                                          <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                          @else
-                                          <a href="#"><i class="icofont-ui-rating"></i></a>
-                                          @endif
+                                          <i class="icofont-ui-rating {{ $i <= $rating ? 'text-warning' : 'text-muted' }}"></i>
                                           @endfor
-                                    </span>
-                                    <h6 class="mb-1"><a class="text-black" href="#">{{ $review->user->name }}</a></h6>
-                                    <p class="text-gray"> {{ Carbon\Carbon::parse($review->created_at)->diffForHumans() }} </p>
+                                    </div>
                                  </div>
-                                 <div class="reviews-members-body">
-                                    <p> {{ $review->comment }} </p>
-                                 </div>
-                                 <div class="reviews-members-footer">
-                                    <a class="total-like" href="#"><i class="icofont-thumbs-up"></i> 856M</a> <a class="total-like" href="#"><i class="icofont-thumbs-down"></i> 158K</a>
-
+                                 <small class="text-muted">{{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }}</small>
+                                 <div class="mt-1">
+                                    <p class="mb-0">{{ $review->comment }}</p>
                                  </div>
                               </div>
                            </div>
                         </div>
-
                         @endforeach
 
-                        <hr>
 
-                        <hr>
-                        <a class="text-center w-100 d-block mt-4 font-weight-bold" href="#">See All Reviews</a>
+                        <a id="toggle-reviews" class="text-center w-100 d-block mt-2 font-weight-bold" href="javascript:void(0);">
+                           See All Reviews
+                        </a>
+                        <script>
+                           document.addEventListener("DOMContentLoaded", function() {
+                              const button = document.getElementById("toggle-reviews");
+                              const extraReviews = document.querySelectorAll(".extra-review");
+                              let expanded = false; // Track toggle state
+
+                              button.addEventListener("click", function() {
+                                 if (!expanded) {
+                                    // Show all hidden reviews
+                                    extraReviews.forEach(review => review.classList.remove("d-none"));
+                                    button.textContent = "Hide Reviews";
+                                 } else {
+                                    // Hide reviews after the first 3
+                                    extraReviews.forEach(review => review.classList.add("d-none"));
+                                    button.textContent = "See All Reviews";
+                                 }
+                                 expanded = !expanded;
+                              });
+                           });
+                        </script>
+
                      </div>
 
 
@@ -483,12 +497,12 @@ $menuNamesString = implode(' . ',$menuNames);
                            }
                         </style>
 
-                        <h5 class="mb-4">Leave Comment</h5>
+                        <h5 class="mb-2">Leave Comment</h5>
                         <p class="mb-2">Rate the Place</p>
                         <form method="post" action="{{ route('store.review') }}">
                            @csrf
                            <input type="hidden" name="client_id" value="{{ $client->id }}">
-                           <div class="mb-4">
+                           <div class="mb-2">
                               <span class="star-rating">
                                  <label for="rating-1">
                                     <input type="radio" name="rating" id="rating-1" value="1" hidden><i class="icofont-ui-rating icofont-2x star-icon"></i></label>
@@ -502,10 +516,28 @@ $menuNamesString = implode(' . ',$menuNames);
                                     <input type="radio" name="rating" id="rating-4" value="4" hidden><i class="icofont-ui-rating icofont-2x star-icon"></i></label>
                                  <label for="rating-5">
                                     <input type="radio" name="rating" id="rating-5" value="5" hidden><i class="icofont-ui-rating icofont-2x star-icon"></i></label>
-
                               </span>
                            </div>
+                           <script>
+                              document.addEventListener("DOMContentLoaded", function() {
+                                 const stars = document.querySelectorAll(".star-rating input[type='radio']");
+                                 const icons = document.querySelectorAll(".star-rating .star-icon");
 
+                                 stars.forEach((star, index) => {
+                                    star.addEventListener("change", () => {
+                                       const rating = parseInt(star.value);
+
+                                       icons.forEach((icon, i) => {
+                                          if (i < rating) {
+                                             icon.style.color = "#dd646e"; // active color
+                                          } else {
+                                             icon.style.color = "#ccc"; // default color
+                                          }
+                                       });
+                                    });
+                                 });
+                              });
+                           </script>
                            <div class="form-group">
                               <label>Your Comment</label>
                               <textarea class="form-control" name="comment" id="comment"></textarea>

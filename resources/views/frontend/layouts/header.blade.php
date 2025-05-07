@@ -19,7 +19,8 @@
       }
 
       .epics-logo {
-         height: 60px;
+         width: 50px;
+         height: auto;
          margin-left: 45px;
       }
 
