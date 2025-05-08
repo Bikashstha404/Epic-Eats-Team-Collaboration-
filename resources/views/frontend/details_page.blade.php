@@ -116,7 +116,7 @@ $menuNamesString = implode(' . ',$menuNames);
                                  <div class="card-body p-3">
                                     <h6 class="card-title text-start mb-1">{{ $populer->name }}</h6>
 
-                                    <div class="text-start mb-2">
+                                    <div class="text-start">
                                        @if (is_null($populer->price))
                                        <span class="text-muted">Price: Not available</span>
                                        @elseif (is_null($populer->discount_price))
@@ -201,7 +201,7 @@ $menuNamesString = implode(' . ',$menuNames);
                                  <div class="card-body p-3">
                                     <h6 class="card-title text-start mb-1">{{ $bestseller->name }}</h6>
 
-                                    <div class="text-start mb-2">
+                                    <div class="text-start">
                                        @if (is_null($bestseller->price))
                                        <span class="text-muted">Price: Not available</span>
                                        @elseif (is_null($bestseller->discount_price))
@@ -319,11 +319,19 @@ $menuNamesString = implode(' . ',$menuNames);
 
                   <div class="tab-pane fade" id="pills-restaurant-info" role="tabpanel" aria-labelledby="pills-restaurant-info-tab">
                      <div id="restaurant-info" class="bg-white rounded shadow-sm p-4 mb-4">
-                        <!-- <div class="address-map float-right ml-5">
+                        <div class="address-map float-right ml-5">
                            <div class="mapouter">
-                              <div class="gmap_canvas"><iframe width="300" height="170" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=9&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+                              <div class="gmap_canvas">
+                                 <img src="{{ (!empty($client->location_photo)) 
+                        ? url('upload/client_images/' . $client->location_photo) 
+                        : url('upload/no_image.jpg') }}"
+                                    width="280"
+                                    height="160"
+                                    alt="Location Image"
+                                    style="object-fit: cover; border-radius: 5px;">
+                              </div>
                            </div>
-                        </div> -->
+                        </div>
                         <h4 class="mb-2">Restaurant Info</h4>
                         <p class="mb-3">{{ $client->address }}</p>
                         <p class="mb-2 text-black"><i class="icofont-phone-circle text-primary mr-2"></i> {{ $client->phone }}</p>
@@ -554,11 +562,6 @@ $menuNamesString = implode(' . ',$menuNames);
             </div>
          </div>
          <div class="col-md-4">
-
-
-
-
-
             <div class="generator-bg rounded shadow-sm mb-4 p-4 osahan-cart-item">
                <h5 class="mb-1 text-white">Your Order</h5>
                <p class="mb-4 text-white">{{ count((array) session('cart')) }} ITEMS</p>
@@ -572,7 +575,6 @@ $menuNamesString = implode(' . ',$menuNames);
                   @endphp
 
                   <div class="gold-members p-2 border-bottom">
-                     <p class="text-gray mb-0 float-right ml-2">${{ $details['price'] * $details['quantity'] }}</p>
                      <span class="count-number float-right">
 
                         <button class="btn btn-outline-secondary  btn-sm left dec" data-id="{{ $id }}"> <i class="icofont-minus"></i> </button>
@@ -583,6 +585,7 @@ $menuNamesString = implode(' . ',$menuNames);
 
                         <button class="btn btn-outline-danger btn-sm right remove" data-id="{{ $id }}"> <i class="icofont-trash"></i> </button>
                      </span>
+                     <p class="text-gray mb-0 float-right me-3">${{ $details['price'] * $details['quantity'] }}</p>
                      <div class="media">
                         <div class="mr-2"><img src="{{ asset($details['image']) }}" width="25px"></div>
                         <div class="media-body">
@@ -592,12 +595,10 @@ $menuNamesString = implode(' . ',$menuNames);
                   </div>
                   @endforeach
                   @endif
-
-
                </div>
                <div class="mb-2 bg-white rounded p-2 clearfix">
-                  <img class="img-fluid float-left" src="{{ asset('frontend/img/wallet-icon.png') }}">
-                  <h6 class="font-weight-bold text-right mb-2">Subtotal : <span class="text-danger">${{ $total }}</span></h6>
+                  <img class="img-fluid float-left" src="{{ asset('frontend/img/wallet-icon1.jpeg') }}" style="height: 40px; width: auto">
+                  <h6 class="font-weight-bold text-right mb-1">Subtotal : <span class="text-danger">${{ $total }}</span></h6>
                   <p class="seven-color mb-1 text-right">Extra charges may apply</p>
                </div>
                <a href="{{ route('checkout') }}" class="btn btn-success btn-block btn-lg">Checkout <i class="icofont-long-arrow-right"></i></a>

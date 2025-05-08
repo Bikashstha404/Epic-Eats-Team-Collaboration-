@@ -137,16 +137,18 @@ class ClientController extends Controller
         return redirect()->route('client.login')->with('success', 'Password Reset Successfully');
     }
 
-    public function ClientProfile(){
+    public function ClientProfile()
+    {
         $city = City::latest()->get();
         $id = Auth::guard('client')->id();
         $profileData = Client::find($id);
-        return view('client.client_profile',compact('profileData','city'));
-     }
-      // End Method 
+        return view('client.client_profile', compact('profileData', 'city'));
+    }
+    // End Method 
 
- 
-      public function ClientProfileStore(Request $request){
+
+    public function ClientProfileStore(Request $request)
+    {
         $id = Auth::guard('client')->id();
         $data = Client::find($id);
 
@@ -155,28 +157,40 @@ class ClientController extends Controller
         $data->phone = $request->phone;
         $data->address = $request->address;
         $data->city_id = $request->city_id;
-        $data->shop_info = $request->shop_info; 
+        $data->shop_info = $request->shop_info;
 
         $oldPhotoPath = $data->photo;
+        $oldCoverImage = $data->cover_photo;
+        $oldLocationImage = $data->location_photo;
 
         if ($request->hasFile('photo')) {
-           $file = $request->file('photo');
-           $filename = time().'.'.$file->getClientOriginalExtension();
-           $file->move(public_path('upload/client_images'),$filename);
-           $data->photo = $filename;
+            $file = $request->file('photo');
+            $filename = time() . '_profile.' . $file->getClientOriginalExtension();
+            $file->move(public_path('upload/client_images'), $filename);
+            $data->photo = $filename;
 
-           if ($oldPhotoPath && $oldPhotoPath !== $filename) {
-             $this->deleteOldImage($oldPhotoPath);
-           }
-
+            if ($oldPhotoPath && $oldPhotoPath !== $filename) {
+                $this->deleteOldImage($oldPhotoPath);
+            }
         }
 
         if ($request->hasFile('cover_photo')) {
             $file1 = $request->file('cover_photo');
-            $filename1 = time().'.'.$file1->getClientOriginalExtension();
-            $file1->move(public_path('upload/client_images'),$filename1);
-            $data->cover_photo = $filename1; 
-         }
+            $filename1 = time() . '_cover.' . $file1->getClientOriginalExtension();
+            $file1->move(public_path('upload/client_images'), $filename1);
+            $data->cover_photo = $filename1;
+        }
+
+        if ($request->hasFile('location_photo')) {
+            $file2 = $request->file('location_photo');
+            $filename2 = time() . '_location.' . $file2->getClientOriginalExtension();
+            $file2->move(public_path('upload/client_images'), $filename2);
+            $data->location_photo = $filename2;
+
+            if ($oldLocationImage && $oldLocationImage !== $filename2) {
+                $this->deleteOldImage($oldLocationImage);
+            }
+        }
 
         $data->save();
 
@@ -187,14 +201,15 @@ class ClientController extends Controller
 
         return redirect()->back()->with($notification);
     }
-     // End Method 
-     private function deleteOldImage(string $oldPhotoPath): void {
-        $fullPath = public_path('upload/client_images/'.$oldPhotoPath);
+    // End Method 
+    private function deleteOldImage(string $oldPhotoPath): void
+    {
+        $fullPath = public_path('upload/client_images/' . $oldPhotoPath);
         if (file_exists($fullPath)) {
             unlink($fullPath);
         }
-     }
-     // End Private Method 
+    }
+    // End Private Method 
 
     public function ClientChangePassword()
     {

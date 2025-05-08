@@ -101,6 +101,11 @@
 
                                     <img id="showCoverImage" src="{{ (!empty($profileData->cover_photo)) ? url('upload/client_images/'.$profileData->cover_photo) : url('upload/no_image.jpg') }}" alt="" class="p-1 bg-primary" width="200" height="120">
 
+                                    <div class="mt-3 mb-3">
+                                        <label for="locationImage" class="form-label">Location Photo</label>
+                                        <input class="form-control" name="location_photo" type="file" id="locationImage">
+                                    </div>
+                                    <img id="showLocationImage" src="{{ (!empty($profileData->location_photo)) ? url('upload/client_images/'.$profileData->location_photo) : url('upload/no_image.jpg') }}" alt="" class="p-1 bg-primary" width="200" height="120">
                                 </div>
                             </div>
 
@@ -159,6 +164,17 @@
             reader.readAsDataURL(e.target.files['0']);
         })
     })
+    
+    $(document).ready(function() {
+        $('#locationImage').change(function(e) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#showLocationImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        })
+    })
+    
 </script>
 
 
