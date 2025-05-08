@@ -21,15 +21,17 @@
          ]);
  
          Review::insert([
-             'client_id' => $client,
-             'user_id' => Auth::id(),
-             'comment' => $request->comment,
-             'rating' => $request->rating,
-             'created_at' => Carbon::now(), 
-         ]);
+            'client_id' => $client,
+            'user_id' => Auth::id(),
+            'comment' => $request->comment,
+            'rating' => $request->rating,
+            'status' => 1, // ✅ Set active immediately
+            'created_at' => Carbon::now(), 
+        ]);
+        
  
          $notification = array(
-             'message' => 'Review Will Approlve By Admin',
+             'message' => 'Thank you! Your review has been posted.',
              'alert-type' => 'success'
          );
  
