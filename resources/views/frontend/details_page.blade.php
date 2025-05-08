@@ -319,11 +319,19 @@ $menuNamesString = implode(' . ',$menuNames);
 
                   <div class="tab-pane fade" id="pills-restaurant-info" role="tabpanel" aria-labelledby="pills-restaurant-info-tab">
                      <div id="restaurant-info" class="bg-white rounded shadow-sm p-4 mb-4">
-                        <!-- <div class="address-map float-right ml-5">
+                        <div class="address-map float-right ml-5">
                            <div class="mapouter">
-                              <div class="gmap_canvas"><iframe width="300" height="170" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=9&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+                              <div class="gmap_canvas">
+                                 <img src="{{ (!empty($client->location_photo)) 
+                        ? url('upload/client_images/' . $client->location_photo) 
+                        : url('upload/no_image.jpg') }}"
+                                    width="280"
+                                    height="160"
+                                    alt="Location Image"
+                                    style="object-fit: cover; border-radius: 5px;">
+                              </div>
                            </div>
-                        </div> -->
+                        </div>
                         <h4 class="mb-2">Restaurant Info</h4>
                         <p class="mb-3">{{ $client->address }}</p>
                         <p class="mb-2 text-black"><i class="icofont-phone-circle text-primary mr-2"></i> {{ $client->phone }}</p>
