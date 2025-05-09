@@ -86,4 +86,40 @@ public function RemoveWishlist($id){
 //End Method
  
  
- } 
+ 
+public function SearchRestaurant(Request $request){
+    $keyword = $request->search;
+
+    $clients = Client::where('name', 'LIKE', '%' . $keyword . '%')
+        ->where('status', 1)
+        ->orderBy('name', 'asc')
+        ->get();
+
+    return view('frontend.search_restaurant', compact('clients', 'keyword'));
+}
+
+ 
+ 
+ public function AutoSearch(Request $request)
+{
+    $query = $request->term;
+
+    $results = Client::where('name', 'LIKE', $query . '%')
+        ->where('status', 1)
+        ->orderBy('name', 'asc')
+        ->limit(10)
+        ->get(['id', 'name']);
+
+    $suggestions = $results->map(function ($client) {
+        return [
+            'label' => $client->name,                       // what user sees
+            'value' => route('res.details', $client->id)    // where user goes on click
+        ];
+    });
+
+    return response()->json($suggestions);
+}
+
+
+
+ } //

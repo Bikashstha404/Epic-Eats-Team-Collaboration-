@@ -21,14 +21,14 @@
        <!-- Custom styles for this template-->
        <link href="{{ asset('frontend/css/osahan.css') }}" rel="stylesheet">
 
-
        <!-- Owl Carousel -->
        <link rel="stylesheet" href="{{ asset('frontend/vendor/owl-carousel/owl.carousel.css') }}">
        <link rel="stylesheet" href="{{ asset('frontend/vendor/owl-carousel/owl.theme.css') }}">
 
-
        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
+
+      
     </head>
     <body>
        <div class="homepage-header">
@@ -138,7 +138,37 @@
      break; 
   }
   @endif 
- </script>
+  <!-- ✅ jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- ✅ jQuery UI CSS & JS -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+<!-- ✅ Autocomplete Search Script -->
+<script>
+    function goToRestaurant() {
+        const url = $('#redirectURL').val();
+        if (url) {
+            window.location.href = url;
+        }
+    }
+
+    $(function () {
+        $("#restaurantSearch").autocomplete({
+            source: "{{ route('restaurant.autocomplete') }}",
+            minLength: 1,
+            select: function (event, ui) {
+                $('#restaurantSearch').val(ui.item.label);
+                $('#redirectURL').val(ui.item.value);
+                goToRestaurant();
+                return false;
+            }
+        });
+    });
+</script>
+
+
     </body>
  </html>
 
