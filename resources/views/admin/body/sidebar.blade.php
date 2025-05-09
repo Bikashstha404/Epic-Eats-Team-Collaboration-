@@ -22,30 +22,24 @@
         </li>
 
 
-        @if (Auth::guard('admin')->user()->can('category.menu')) 
         <li>
             <a href="javascript: void(0);" class="has-arrow">
                 <i data-feather="grid"></i>
                 <span data-key="t-apps">Category</span>
             </a>
             <ul class="sub-menu" aria-expanded="false">
-            @if (Auth::guard('admin')->user()->can('category.all')) 
                 <li>
                   <a href="{{ route('all.category') }}">
                         <span data-key="t-calendar">All Category</span>
                     </a>
                 </li>
-                @endif
-                 @if (Auth::guard('admin')->user()->can('category.add')) 
                 <li>
                   <a href="{{ route('add.category') }}">
                         <span data-key="t-chat">Add Category</span>
                     </a>
                 </li>
-                @endif
             </ul>
         </li>
-        @endif
 
         <li>
              <a href="javascript: void(0);" class="has-arrow">
@@ -147,30 +141,9 @@
             </ul>
         </li>
 
-        <li>
-             <a href="javascript: void(0);" class="has-arrow">
-                 <i data-feather="gift"></i>
-                 <span data-key="t-ui-elements">Role & Permission</span>
-             </a>
-             <ul class="sub-menu" aria-expanded="false">
-                 <li><a href="{{ route('all.permission') }}" data-key="t-lightbox">All Permission</a></li>
-                 <li><a href="{{ route('all.roles') }}" data-key="t-range-slider">All Roles</a></li>
-                 <li><a href="{{ route('add.roles.permission') }}" data-key="t-range-slider">Role In Permission</a></li>
-                 <li><a href="{{ route('all.roles.permission') }}" data-key="t-range-slider">All Role In Permission</a></li>
-                 
-             </ul>
-         </li>
-
     </ul>
 
-    <div class="card sidebar-alert border-0 text-center mx-4 mb-0 mt-5">
-        <div class="card-body">
-            <img src="assets/images/giftbox.png" alt="">
-            <div class="mt-4">
-                <h5 class="alertcard-title font-size-16">Unlimited Access</h5>
-                <p class="font-size-13">Upgrade your plan from a Free trial, to select ‘Business Plan’.</p>
-            </div>
-        </div>
+
     </div>
 </div>
         <!-- Sidebar -->
