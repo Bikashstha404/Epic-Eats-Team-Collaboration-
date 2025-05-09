@@ -23,9 +23,14 @@
          $menuNamesString = implode(' . ',$menuNames);
 
          @endphp
-
-
          
+         @php
+         $userFavs = [];
+         if(Auth::check()) {
+            $userFavs = App\Models\Wishlist::where('user_id', Auth::id())->pluck('client_id')->toArray();
+         }
+         @endphp
+
          @php
          $reviewcount = App\Models\Review::where('client_id',$client->id)->where('status',1)->latest()->get();
          $avarage = App\Models\Review::where('client_id',$client->id)->where('status',1)->avg('rating');
@@ -37,7 +42,11 @@
                   <div class="list-card-image">
                    
                   <div class="star position-absolute"><span class="badge badge-success"><i class="icofont-star"></i>{{ number_format($avarage,1) }} ({{ count($reviewcount ) }}+)</span></div>
-                     <div class="favourite-heart text-danger position-absolute"><a aria-label="Add to Wishlist" onclick="addWishList({{$client->id}})" ><i class="icofont-heart"></i></a></div>
+                     <div class="favourite-heart position-absolute">
+                        <a href="javascript:void(0);" class="wishlist-toggle" data-id="{{ $client->id }}">
+                           <i class="icofont-heart {{ in_array($client->id, $userFavs) ? 'text-danger' : 'text-muted' }}"></i>
+                        </a>
+                     </div>
                      <a href="{{ route('res.details',$client->id) }}">
                         <img src="{{ !empty($client->photo) ? asset('upload/client_images/' . $client->photo) : asset('upload/no_image.jpg') }}" class="img-fluid item-img" style="min-height: 200px; width: 300px; height:200px;" alt="Profile Image">
                      </a>
