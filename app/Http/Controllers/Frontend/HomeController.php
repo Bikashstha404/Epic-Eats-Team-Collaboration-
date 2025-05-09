@@ -85,6 +85,7 @@ public function RemoveWishlist($id){
 }
 //End Method
  
+<<<<<<< Updated upstream
  
  
 public function SearchRestaurant(Request $request){
@@ -123,3 +124,31 @@ public function SearchRestaurant(Request $request){
 
 
  } //
+=======
+ public function ToggleWishlist(Request $request)
+{
+    if (!Auth::check()) {
+        return response()->json(['status' => 'unauthenticated']);
+    }
+
+    $client_id = $request->client_id;
+    $user_id = Auth::id();
+
+    $existing = Wishlist::where('user_id', $user_id)->where('client_id', $client_id)->first();
+
+    if ($existing) {
+        $existing->delete();
+        return response()->json(['status' => 'removed']);
+    } else {
+        Wishlist::create([
+            'user_id' => $user_id,
+            'client_id' => $client_id,
+            'created_at' => now(),
+        ]);
+        return response()->json(['status' => 'added']);
+    }
+}
+
+
+ } 
+>>>>>>> Stashed changes

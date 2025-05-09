@@ -27,8 +27,31 @@
 
        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
+<<<<<<< Updated upstream
 
       
+=======
+       <style>
+.toast-success {
+  background-color: #51A351 !important;
+  color: white !important;
+}
+.toast-info {
+  background-color: #5bc0de !important;
+  color: white !important;
+}
+.toast-warning {
+  background-color: #f0ad4e !important;
+  color: white !important;
+}
+.toast-error {
+  background-color: #d9534f !important;
+  color: white !important;
+}
+</style>
+
+
+>>>>>>> Stashed changes
     </head>
     <body>
        <div class="homepage-header">
@@ -138,6 +161,7 @@
      break; 
   }
   @endif 
+<<<<<<< Updated upstream
   <!-- ✅ jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -169,6 +193,43 @@
 </script>
 
 
+=======
+ </script>
+<script>
+   $(document).on('click', '.wishlist-toggle', function() {
+      var el = $(this);
+      var clientId = el.data('id');
+
+      $.ajax({
+    url: "/wishlist/toggle",
+    type: 'POST',
+    headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+    },
+    data: {
+        _token: '{{ csrf_token() }}',
+        client_id: clientId
+    },
+    success: function(response) {
+        var icon = el.find('i');
+        if (response.status === 'added') {
+            icon.removeClass('text-muted').addClass('text-danger');
+            toastr.success('Added to your wishlist!');
+        } else if (response.status === 'removed') {
+            icon.removeClass('text-danger').addClass('text-muted');
+            toastr.info('Removed from your wishlist!');
+        }
+    },
+    error: function(xhr) {
+        if (xhr.status === 401) {
+            toastr.warning('Please login to add to your wishlist!');
+        }
+    }
+});
+   });
+</script>
+
+>>>>>>> Stashed changes
     </body>
  </html>
 

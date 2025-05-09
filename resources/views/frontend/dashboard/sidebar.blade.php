@@ -101,7 +101,8 @@ $profileData = App\Models\User::find($id);
          </li>
 
          <li class="nav-item">
-             <a class="nav-link {{ Route::currentRouteName() === 'all.wishlist' ? 'active' : '' }}"  href="{{ route('all.wishlist') }}" role="tab" aria-controls="orders" aria-selected="true"><i class="icofont-food-cart"></i> Favourites </a>
+             <a class="nav-link {{ Route::currentRouteName() === 'all.wishlist' ? 'active' : '' }}" 
+               href="{{ route('all.wishlist') }}" role="tab" aria-controls="orders" aria-selected="true"><i class="icofont-food-cart"></i> Favourites </a>
           </li>
  
 
@@ -112,17 +113,6 @@ $profileData = App\Models\User::find($id);
             </a>
          </li>
 
-         <!-- <li class="nav-item">
-            <a class="nav-link" id="payments-tab" data-toggle="tab" href="#payments">
-               <i class="icofont-credit-card"></i> Payments
-            </a>
-         </li>
-
-         <li class="nav-item">
-            <a class="nav-link" id="addresses-tab" data-toggle="tab" href="#addresses">
-               <i class="icofont-location-pin"></i> Addresses
-            </a>
-         </li> -->
       </ul>
    </div>
 </div>

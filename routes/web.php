@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     // Get Wishlist data for user 
     Route::get('/all/wishlist', [HomeController::class, 'AllWishlist'])->name('all.wishlist');
     Route::get('/remove/wishlist/{id}', [HomeController::class, 'RemoveWishlist'])->name('remove.wishlist');
+    Route::post('/wishlist/toggle', [HomeController::class, 'ToggleWishlist'])->name('wishlist.toggle');
 
 });
 
