@@ -27,10 +27,8 @@
 
        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
-<<<<<<< Updated upstream
 
       
-=======
        <style>
 .toast-success {
   background-color: #51A351 !important;
@@ -51,7 +49,6 @@
 </style>
 
 
->>>>>>> Stashed changes
     </head>
     <body>
        <div class="homepage-header">
@@ -161,7 +158,6 @@
      break; 
   }
   @endif 
-<<<<<<< Updated upstream
   <!-- ✅ jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -193,7 +189,6 @@
 </script>
 
 
-=======
  </script>
 <script>
    $(document).on('click', '.wishlist-toggle', function() {
@@ -229,7 +224,6 @@
    });
 </script>
 
->>>>>>> Stashed changes
     </body>
  </html>
 

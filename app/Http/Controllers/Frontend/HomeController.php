@@ -85,7 +85,6 @@ public function RemoveWishlist($id){
 }
 //End Method
  
-<<<<<<< Updated upstream
  
  
 public function SearchRestaurant(Request $request){
@@ -121,10 +120,6 @@ public function SearchRestaurant(Request $request){
     return response()->json($suggestions);
 }
 
-
-
- } //
-=======
  public function ToggleWishlist(Request $request)
 {
     if (!Auth::check()) {
@@ -151,4 +146,3 @@ public function SearchRestaurant(Request $request){
 
 
  } 
->>>>>>> Stashed changes
