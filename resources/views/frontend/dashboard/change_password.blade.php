@@ -15,7 +15,7 @@
     .password-wrapper {
         position: relative;
     }
-    .password-wrapper input {
+    .password-wrapper input { 
         padding-right: 2.5rem;
     }
     .password-wrapper .toggle-password {
