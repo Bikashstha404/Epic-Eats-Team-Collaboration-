@@ -127,22 +127,22 @@
                         </h5>
                     </div>
 
-                    <!-- Search Form -->
-                    <div class="homepage-search">
-                        <form>
-                            <div class="form-row justify-content-center">
-                                <div class="col-lg-8 col-md-9 col-sm-12 form-group position-relative">
-                                    <input type="text" placeholder="Search here..." class="form-control form-control-lg">
-                                    <i class="fas fa-search"></i>
-                                </div>
-                                <div class="col-lg-1 col-md-3 col-sm-12 form-group">
-                                    <a href="listing.html" class="btn btn-gradient text-white">
-                                        Search
-                                    </a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                   <!-- Search Form -->
+         <!-- Search Form -->
+         <form method="GET" action="{{ route('restaurant.search') }}">
+    <div class="form-row justify-content-center">
+        <div class="col-lg-8 col-md-9 col-sm-12 form-group mb-0">
+            <input type="text" name="search" class="form-control form-control-lg" placeholder="Search restaurant name..." required>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-12 form-group mb-0">
+            <button type="submit" class="btn btn-gradient btn-block btn-lg">Search</button>
+        </div>
+    </div>
+</form>
+
+
+
+
                 </div>
             </div>
         </div>

@@ -247,3 +247,9 @@ Route::controller(ReviewController::class)->group(function(){
     
 });
 
+Route::get('/search/restaurant', [HomeController::class, 'SearchRestaurant'])->name('restaurant.search');
+
+Route::get('/autocomplete/restaurant', [App\Http\Controllers\Frontend\HomeController::class, 'AutoSearch'])->name('restaurant.autocomplete');
+Route::get('/search/restaurant', [HomeController::class, 'SearchRestaurant'])->name('restaurant.search');
+
+
