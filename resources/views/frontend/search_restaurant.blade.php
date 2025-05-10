@@ -4,7 +4,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
 <section class="section pt-5 pb-5 products-section">
     <div class="container">
-        <div class="section-header text-center">
+        <div class="section-header">
             <h2>Search Results</h2>
             <p>Showing results for: "{{ $keyword }}"</p>
             <span class="line"></span>

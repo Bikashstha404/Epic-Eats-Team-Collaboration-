@@ -236,6 +236,40 @@
       this.classList.toggle("fa-eye-slash");
     });
   </script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- Load Toastr CSS & JS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <!-- Show Toastr Message -->
+  <script>
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info') }}";
+    var message = @json(Session::get('message'));
+    console.log("Type:", type);
+    console.log("Message:", message);
+
+    switch (type) {
+      case 'info':
+        toastr.info(" {{ Session::get('message') }} ");
+        break;
+
+      case 'success':
+        toastr.success(" {{ Session::get('message') }} ");
+        break;
+
+      case 'warning':
+        toastr.warning(" {{ Session::get('message') }} ");
+        break;
+
+      case 'error':
+        toastr.error(" {{ Session::get('message') }} ");
+        break;
+    }
+    @endif
+  </script>
 </body>
 
 </html>
