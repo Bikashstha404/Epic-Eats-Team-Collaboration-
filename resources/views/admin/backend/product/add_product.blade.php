@@ -122,7 +122,7 @@
                                 <div class="col-xl-6 col-md-6">
                                     <div class="form-group mb-3">
                                         <label for="example-text-input" class="form-label">Product Image </label>
-                                        <input class="form-control" name="image" type="file" id="image">
+                                        <input class="form-control" name="image" type="file" id="image" accept="image/*">
                                     </div>
                                 </div>
 
@@ -209,7 +209,7 @@
                     min: 0,
                 },
                 qty: {
-                    number: true,
+                    digits: true,
                     min: 0,
                 },
                 discount_price: {
@@ -246,7 +246,7 @@
                     min: 'Size must be at least 0',
                 },
                 qty: {
-                    number: 'Please enter a valid number for Quantity',
+                    digits: 'Please enter a valid number for Quantity',
                     min: 'Quantity must be at least 0',
                 },
                 discount_price: {

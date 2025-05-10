@@ -47,11 +47,11 @@
 
                                         <div class="form-group mb-3">
                                             <label for="example-text-input" class="form-label">Category Image</label>
-                                            <input class="form-control" name="image" type="file" id="image">
+                                            <input class="form-control" name="image" type="file" id="image" accept="image/*">
                                         </div>
                                         <div class="mb-3">
 
-                                            <img id="showImage" src="{{ asset($category->image) }}" alt="" class=" p-1 bg-primary" width="210" height="120">
+                                            <img id="showImage" src="{{ asset($category->image) }}" alt="" class=" p-1 bg-primary" width="210" height="120" >
                                         </div>
                                         <div class="mt-4">
                                             <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>

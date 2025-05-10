@@ -4,7 +4,7 @@
             <div class="col-sm-6">
                 <script>
                     document.write(new Date().getFullYear())
-                </script> © Copyright 2025 EpicEats. All Rights Reserved.
+                </script> © Copyright EpicEats. All Rights Reserved.
             </div>
         </div>
     </div>

@@ -46,7 +46,7 @@
 
                                         <div class="form-group mb-3">
                                             <label for="example-text-input" class="form-label">Category Image</label>
-                                            <input class="form-control" name="image" type="file" id="image">
+                                            <input class="form-control" name="image" type="file" id="image" accept="image/*">
                                         </div>
                                         <div class="mb-3">
 

@@ -86,7 +86,7 @@
 
                                     <div class="mb-3">
                                         <label for="example-text-input" class="form-label">Profile Image</label>
-                                        <input class="form-control" name="photo" type="file" value="{{ $profileData->photo }}" id="image">
+                                        <input class="form-control" name="photo" type="file" value="{{ $profileData->photo }}" id="image" accept="image/*">
                                     </div>
                                     <div class="mb-3">
                                         <img id="showImage" src="{{ (!empty($profileData->photo)) ? url('upload/admin_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="" class="rounded-circle p-1 bg-primary" style="width: 90px; height: 90px; object-fit: cover;">
