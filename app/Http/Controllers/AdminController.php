@@ -32,17 +32,30 @@ class AdminController extends Controller
       'email' => $check['email'],
       'password' => $check['password'],
     ];
+
     if (Auth::guard('admin')->attempt($data)) {
-      return redirect()->route('admin.dashboard')->with('success', 'Login Sucessfully');
+      $notification = array(
+        'message' => 'Login Successfully',
+        'alert-type' => 'success'
+      );
+      return redirect()->route('admin.dashboard')->with($notification);
     } else {
-      return redirect()->route('admin.login')->with('error', 'Invalid Credentials');
+      $notification = array(
+        'message' => 'Invalid Credentials',
+        'alert-type' => 'error'
+      );
+      return redirect()->route('admin.login')->with($notification);
     }
   }
 
   public function AdminLogout()
   {
     Auth::guard('admin')->logout();
-    return redirect()->route('admin.login')->with('success', 'Logout Success');
+    $notification = array(
+      'message' => 'Logout Success',
+      'alert-type' => 'success'
+    );
+    return redirect()->route('admin.login')->with($notification);
   }
 
   public function AdminForgetPassword()
