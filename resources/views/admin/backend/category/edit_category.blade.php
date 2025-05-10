@@ -51,7 +51,7 @@
                                         </div>
                                         <div class="mb-3">
 
-                                            <img id="showImage" src="{{ asset($category->image) }}" alt="" class="rounded-circle p-1 bg-primary" width="110">
+                                            <img id="showImage" src="{{ asset($category->image) }}" alt="" class=" p-1 bg-primary" width="210" height="120">
                                         </div>
                                         <div class="mt-4">
                                             <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>

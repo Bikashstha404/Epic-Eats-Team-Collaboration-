@@ -67,7 +67,7 @@
 
                                     <div class="mb-3">
                                         <label for="example-text-input" class="form-label">Email</label>
-                                        <input class="form-control" name="email" type="email" value="{{ $profileData->email }}" id="example-text-input">
+                                        <input class="form-control" name="email" type="email" value="{{ $profileData->email }}" id="example-text-input" readonly>
                                     </div>
 
                                     <div class="mb-3">

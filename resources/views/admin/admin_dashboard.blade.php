@@ -34,43 +34,23 @@
 </head>
 
 <body>
-
-  <!-- <body data-layout="horizontal"> -->
-
-  <!-- Begin page -->
   <div id="layout-wrapper">
-
 
     @include('admin.body.header')
 
-    <!-- ========== Left Sidebar Start ========== -->
     @include('admin.body.sidebar')
-    <!-- Left Sidebar End -->
-
-
-
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
     <div class="main-content">
 
       @yield('admin')
-      <!-- End Page-content -->
 
       @include('admin.body.footer')
 
     </div>
-    <!-- end main content-->
 
   </div>
-  <!-- END layout-wrapper -->
 
-
-  <!-- Right Sidebar -->
   @include('admin.body.rightside')
-  <!-- /Right-bar -->
 
-  <!-- Right bar overlay-->
   <div class="rightbar-overlay"></div>
 
   <!-- JAVASCRIPT -->
