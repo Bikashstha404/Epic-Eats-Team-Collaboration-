@@ -88,7 +88,7 @@ Route::post('/client/register/submit', [ClientController::class, 'ClientRegister
 Route::middleware('admin')->group(function () {
  
     Route::controller(CategoryController::class)->group(function(){
-        Route::get('/all/category', 'AllCategory')->name('all.category')->middleware(['permission:category.all']);
+        Route::get('/all/category', 'AllCategory')->name('all.category');
         Route::get('/add/category', 'AddCategory')->name('add.category');
         Route::post('/store/category', 'StoreCategory')->name('category.store');
         Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
@@ -248,7 +248,7 @@ Route::controller(ReviewController::class)->group(function(){
     
 });
 
-Route::get('/search/restaurant', [HomeController::class, 'SearchRestaurant'])->name('restaurant.search');
+// Route::get('/search/restaurant', [HomeController::class, 'SearchRestaurant'])->name('restaurant.search');
 
 Route::get('/autocomplete/restaurant', [App\Http\Controllers\Frontend\HomeController::class, 'AutoSearch'])->name('restaurant.autocomplete');
 Route::get('/search/restaurant', [HomeController::class, 'SearchRestaurant'])->name('restaurant.search');

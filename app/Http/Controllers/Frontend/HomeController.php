@@ -93,7 +93,7 @@ public function SearchRestaurant(Request $request){
     $clients = Client::where('name', 'LIKE', '%' . $keyword . '%')
         ->where('status', 1)
         ->orderBy('name', 'asc')
-        ->get();
+        ->paginate(8);
 
     return view('frontend.search_restaurant', compact('clients', 'keyword'));
 }
