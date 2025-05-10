@@ -127,18 +127,18 @@
                         </h5>
                     </div>
 
-                   <!-- Search Form -->
-         <!-- Search Form -->
-         <form method="GET" action="{{ route('restaurant.search') }}">
-    <div class="form-row justify-content-center">
-        <div class="col-lg-8 col-md-9 col-sm-12 form-group mb-0">
-            <input type="text" name="search" class="form-control form-control-lg" placeholder="Search restaurant name..." required>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-12 form-group mb-0">
-            <button type="submit" class="btn btn-gradient btn-block btn-lg">Search</button>
-        </div>
-    </div>
-</form>
+                    <!-- Search Form -->
+                    <!-- Search Form -->
+                    <form method="GET" action="{{ route('restaurant.search') }}">
+                        <div class="form-row justify-content-center">
+                            <div class="col-lg-8 col-md-9 col-sm-12 form-group mb-0">
+                                <input type="text" name="search" class="form-control form-control-lg" placeholder="Search restaurant name..." required>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12 form-group mb-0">
+                                <button type="submit" class="btn btn-gradient btn-block btn-lg">Search</button>
+                            </div>
+                        </div>
+                    </form>
 
 
 

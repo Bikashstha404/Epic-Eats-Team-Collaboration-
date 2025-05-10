@@ -422,7 +422,7 @@ $menuNamesString = implode(' . ',$menuNames);
                         </style>
 
                         @php
-                        $reviews = App\Models\Review::where('client_id',$client->id)->where('status',1)->latest()->limit(5)->get();
+                        $reviews = App\Models\Review::where('client_id',$client->id)->where('status',1)->latest()->get();
                         @endphp
 
                         @foreach ($reviews as $index => $review)
