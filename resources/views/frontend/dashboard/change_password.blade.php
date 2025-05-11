@@ -7,7 +7,7 @@
     $profileData = App\Models\User::find($id);
 @endphp
 
-<!-- Font Awesome CDN -->
+<!-- Font Awesome CDN --> 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
 <!-- Custom CSS -->
