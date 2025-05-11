@@ -11,7 +11,7 @@
          <span class="line"></span>
       </div>
       <div class="row">
-         
+
          @php
          // Paginate the clients with their average ratings, considering multiple reviews, and handle clients with no reviews
          $clientsWithRatings = App\Models\Client::select(
@@ -55,7 +55,7 @@
 
          <div class="col-md-3">
             <div class="item pb-3">
-               <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" style="min-height: 360px;">
+               <div class="list-card bg-white h-120 rounded overflow-hidden position-relative shadow-sm" style="height: 300px; width: 300px">
                   <div class="list-card-image">
                      <div class="star position-absolute"><span class="badge badge-success"><i class="icofont-star"></i>{{ number_format($avarage,1) }} ({{ count($reviewcount ) }}+)</span></div>
                      <div class="favourite-heart position-absolute">
@@ -64,14 +64,16 @@
                         </a>
                      </div>
                      <a href="{{ route('res.details',$client->id) }}">
-                        <img src="{{ !empty($client->photo) ? asset('upload/client_images/' . $client->photo) : asset('upload/no_image.jpg') }}" class="img-fluid item-img" style="min-height: 200px; width: 300px; height:200px;" alt="Profile Image">
-                     </a>
+                        <img src="{{ !empty($client->photo) ? asset('upload/client_images/' . $client->photo) : asset('upload/no_image.jpg') }}"
+                        class="img-fluid item-img d-block mx-auto"
+                        style="height: 200px; object-fit: cover;"
+                        alt="Profile Image">
                   </div>
                   <div class="p-3 position-relative">
                      <div class="list-card-body">
                         <h6 class="mb-1"><a href="{{ route('res.details',$client->id) }}" class="text-black">{{ $client->name }}</a></h6>
                         <p class="text-gray mb-3"> {{ $menuNamesString  }}</p>
-                        <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="icofont-wall-clock"></i> 20–25 min</span> </p>
+                        <p class="text-gray mb-3 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="icofont-wall-clock"></i> 25- 30 min</span> </p>
                      </div>
                   </div>
                </div>
