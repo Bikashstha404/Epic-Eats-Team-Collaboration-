@@ -164,6 +164,18 @@
          color: #FF6B35;
       }
 
+      .error-message {
+         color: #FF3E3E;
+         font-size: 14px;
+         margin-top: 5px;
+         display: flex;
+         align-items: center;
+      }
+
+      .error-message i {
+         margin-right: 5px;
+      }
+
       .image-container img {
          margin-top: 15vh;
          max-width: 100%;
