@@ -22,7 +22,7 @@
              $table->string('phone')->nullable();
              $table->string('address')->nullable();
              $table->string('city_id')->nullable();
-             $table->string('shop_info')->nullable();
+             $table->text('shop_info')->nullable();
              $table->string('cover_photo')->nullable();
              $table->string('location_photo')->nullable();
              $table->string('role')->default('client');

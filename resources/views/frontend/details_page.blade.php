@@ -133,7 +133,7 @@ $menuNamesString = implode(' . ',$menuNames);
                                           @if (is_null($populer->size))
                                           Size: -------
                                           @else
-                                          Size: <span class="ms-1">{{ $populer->size }} cm</span>
+                                          Size: <span class="ms-1">{{ $populer->size }} inch</span>
                                           @endif
                                        </div>
                                        <a class="btn btn-outline-secondary btn-sm"
@@ -218,7 +218,7 @@ $menuNamesString = implode(' . ',$menuNames);
                                           @if (is_null($bestseller->size))
                                           Size: -------
                                           @else
-                                          Size: <span class="ms-1">{{ $bestseller->size }}cm</span>
+                                          Size: <span class="ms-1">{{ $bestseller->size }} inch</span>
                                           @endif
                                        </div>
                                        <a class="btn btn-outline-secondary btn-sm"
@@ -279,11 +279,11 @@ $menuNamesString = implode(' . ',$menuNames);
                                        @if (is_null($product->price) && is_null($product->size))
                                        <p class="text-muted mb-0">Price: ---, Size: ---</p>
                                        @elseif (is_null($product->price))
-                                       <p class="text-muted mb-0">Price: ---, Size: {{ $product->size }} cm</p>
+                                       <p class="text-muted mb-0">Price: ---, Size: {{ $product->size }} inch</p>
                                        @elseif (is_null($product->size))
                                        <p class="text-muted mb-0">Price: ${{ $product->price }}, Size: ---</p>
                                        @else
-                                       <p class="text-gray mb-0">Price: ${{ $product->price }}, Size: {{ $product->size }} cm</p>
+                                       <p class="text-gray mb-0">Price: ${{ $product->price }}, Size: {{ $product->size }} inch</p>
                                        @endif
                                     </div>
                                  </div>
