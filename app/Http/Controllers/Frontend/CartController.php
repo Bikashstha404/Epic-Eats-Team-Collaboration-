@@ -12,9 +12,7 @@
  class CartController extends Controller
  {
      public function AddToCart($id){
-
         $products = Product::find($id);
- 
         $cart = session()->get('cart',[]);
         if (isset($cart[$id])) {
            $cart[$id]['quantity']++;
@@ -30,7 +28,6 @@
            ];
         }
         session()->put('cart',$cart);
-
         // return response()->json($cart);
         $notification = array(
             'message' => 'Add to Cart Successfully',
@@ -38,10 +35,8 @@
         );
 
         return redirect()->back()->with($notification);
- 
      }
      //End Method 
-
      public function updateCartQuanity(Request $request){
         $cart = session()->get('cart',[]);
 
@@ -54,10 +49,8 @@
             'message' => 'Quantity Updated',
             'alert-type' => 'success'
            ]);
-
     }
      //End Method 
-
      public function CartRemove(Request $request){
         $cart = session()->get('cart',[]);
 
@@ -72,7 +65,8 @@
      }
       //End Method 
 
-      public function ShopCheckout(){
+
+            public function ShopCheckout(){
         if (Auth::check()) {
             $cart = session()->get('cart',[]);
             $totalAmount = 0;
@@ -102,6 +96,4 @@
         } 
     }
     //End Method 
- 
- 
  }
