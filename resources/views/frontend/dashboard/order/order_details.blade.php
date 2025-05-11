@@ -13,6 +13,7 @@
          @include('frontend.dashboard.sidebar')
  
  
+         
  <div class="col-md-9">
      <div class="osahan-account-page-right rounded shadow-sm bg-white p-4 h-100">
      <div class="tab-content" id="myTabContent">
