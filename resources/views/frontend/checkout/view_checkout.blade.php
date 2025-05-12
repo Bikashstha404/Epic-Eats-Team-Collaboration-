@@ -66,7 +66,7 @@
                                  <div class="mr-3"><i class="icofont-briefcase icofont-3x"></i></div>
                                  <div class="media-body">
                                     <h5 class="text-black">Away</h5>
-                                    <input type="text" id="customAddress" placeholder="Enter your location address" style="padding:2px; width: 18vw; border-radius: 5px">
+                                    <input type="text" id="customAddress" placeholder="Enter your location address" style="padding:2px; width: 12vw; border-radius: 5px">
                                     <a class="btn-gradient btn-sm btn-s mr-2 mt-3 select-custom-address">DELIVER HERE</a>
                                  </div>
                               </div>

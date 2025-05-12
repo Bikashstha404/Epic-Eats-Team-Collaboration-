@@ -130,7 +130,7 @@
                      aria-expanded="false">
                      <img alt="User image"
                         src="{{ (!empty($profileData->photo)) ? url('upload/user_images/'.$profileData->photo) : url('upload/no_image.jpg') }}"
-                        class="nav-epics-pic"> My Account
+                        class="nav-epics-pic"> {{ $profileData->name }}
                   </a>
                   <div class="dropdown-menu dropdown-menu-right shadow-sm border-0">
                      <a class="dropdown-item" href="{{ route('dashboard') }}"><i class="icofont-user-alt-3 mr-2"></i> Profile</a>

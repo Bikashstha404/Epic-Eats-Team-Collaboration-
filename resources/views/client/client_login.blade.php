@@ -200,6 +200,11 @@
       .form-group.position-relative {
          position: relative;
       }
+
+      .input-container {
+         position: relative;
+         width: 100%;
+      }
    </style>
 </head>
 
@@ -225,8 +230,10 @@
 
                   <!-- Password Field -->
                   <div class="form-group position-relative">
-                     <input type="password" name="password" id="password" class="form-control input-with-icon @error('password') error @enderror" placeholder="Password">
-                     <span class="eye-icon"><i class="fas fa-eye" id="togglePassword"></i></span>
+                     <div class="input-container">
+                        <input type="password" name="password" id="password" class="form-control input-with-icon @error('password') error @enderror" placeholder="Password">
+                        <span class="eye-icon"><i class="fas fa-eye" id="togglePassword"></i></span>
+                     </div>
                      @error('password')
                      <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
                      @enderror
