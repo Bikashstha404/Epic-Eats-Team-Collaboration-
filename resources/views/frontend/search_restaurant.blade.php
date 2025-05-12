@@ -10,13 +10,14 @@
             <span class="line"></span>
         </div>
 
+        
         @if($clients->count() > 0)
         <div class="row">
 
             @foreach ($clients as $client)
             <div class="col-md-3">
                 <div class="item pb-3">
-                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" style="min-height: 360px;">
+                    <div class="list-card bg-white h-100 rounded overflow-hidden position-relative shadow-sm" style="min-height: 270px;">
                         <div class="list-card-image">
                             <a href="{{ route('res.details',$client->id) }}">
                                 <img src="{{ !empty($client->photo) ? asset('upload/client_images/' . $client->photo) : asset('upload/no_image.jpg') }}"
@@ -28,6 +29,7 @@
                         <div class="p-3 position-relative">
                             <div class="list-card-body">
                                 <h6 class="mb-1"><a href="{{ route('res.details',$client->id) }}" class="text-black">{{ $client->name }}</a></h6>
+                                <p class="text-gray mt-3 mb-2 time"><span class="bg-light text-dark rounded-sm pl-2 pb-1 pt-1 pr-2"><i class="icofont-wall-clock"></i> 25- 30 min</span> </p>
                             </div>
                         </div>
                     </div>
