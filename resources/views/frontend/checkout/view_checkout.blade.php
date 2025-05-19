@@ -18,6 +18,11 @@
       background: linear-gradient(to right, #ff9c4b, #ff6f3c);
       color: #fff;
    }
+
+   .nav-pills .nav-link.custom-selected {
+      background-color: #198754 !important;
+      color: #fff !important;
+   }
 </style>
 
 <section class="offer-dedicated-body mt-4 mb-4 pt-2 pb-2">
@@ -61,7 +66,7 @@
                                  <div class="mr-3"><i class="icofont-briefcase icofont-3x"></i></div>
                                  <div class="media-body">
                                     <h5 class="text-black">Away</h5>
-                                    <input type="text" id="customAddress" placeholder="Enter your location address" style="padding:2px; width: 18vw; border-radius: 5px">
+                                    <input type="text" id="customAddress" placeholder="Enter your location address" style="padding:2px; width: 12vw; border-radius: 5px">
                                     <a class="btn-gradient btn-sm btn-s mr-2 mt-3 select-custom-address">DELIVER HERE</a>
                                  </div>
                               </div>
@@ -302,6 +307,28 @@
    });
 </script>
 
+<script>
+   $(document).ready(function () {
+      // Restore selection from localStorage
+      const selectedTabId = localStorage.getItem('selectedPaymentTab');
 
+      if (selectedTabId) {
+         $('.nav-pills .nav-link').removeClass('active custom-selected');
+         $('.tab-pane').removeClass('show active');
+
+         const $tab = $('#' + selectedTabId);
+         $tab.addClass('active custom-selected');
+         const target = $tab.attr('href');
+         $(target).addClass('show active');
+      }
+
+      // On user click, store selection
+      $('.nav-pills .nav-link').on('click', function () {
+         $('.nav-pills .nav-link').removeClass('custom-selected');
+         $(this).addClass('custom-selected');
+         localStorage.setItem('selectedPaymentTab', $(this).attr('id'));
+      });
+   });
+</script>
 
 @endsection

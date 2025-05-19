@@ -54,7 +54,7 @@
       <div class="mb-4">
         <label for="email" class="block text-sm font-semibold text-gray-800 mb-1">Email Address</label>
         <input id="email" name="email" type="email" required autofocus autocomplete="username"
-          value="{{$email}}"
+          value="{{$email}}" readonly
           class="w-full px-4 py-2 rounded-lg bg-white/80 border border-orange-200 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-orange-400">
         @error('email')
         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>

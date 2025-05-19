@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     // Get Wishlist data for user 
     Route::get('/all/wishlist', [HomeController::class, 'AllWishlist'])->name('all.wishlist');
     Route::get('/remove/wishlist/{id}', [HomeController::class, 'RemoveWishlist'])->name('remove.wishlist');
+    Route::post('/wishlist/toggle', [HomeController::class, 'ToggleWishlist'])->name('wishlist.toggle');
 
 });
 
@@ -88,7 +89,7 @@ Route::post('/client/register/submit', [ClientController::class, 'ClientRegister
 Route::middleware('admin')->group(function () {
  
     Route::controller(CategoryController::class)->group(function(){
-        Route::get('/all/category', 'AllCategory')->name('all.category')->middleware(['permission:category.all']);
+        Route::get('/all/category', 'AllCategory')->name('all.category');
         Route::get('/add/category', 'AddCategory')->name('add.category');
         Route::post('/store/category', 'StoreCategory')->name('category.store');
         Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
@@ -248,7 +249,7 @@ Route::controller(ReviewController::class)->group(function(){
     
 });
 
-Route::get('/search/restaurant', [HomeController::class, 'SearchRestaurant'])->name('restaurant.search');
+// Route::get('/search/restaurant', [HomeController::class, 'SearchRestaurant'])->name('restaurant.search');
 
 Route::get('/autocomplete/restaurant', [App\Http\Controllers\Frontend\HomeController::class, 'AutoSearch'])->name('restaurant.autocomplete');
 Route::get('/search/restaurant', [HomeController::class, 'SearchRestaurant'])->name('restaurant.search');

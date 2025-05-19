@@ -8,7 +8,7 @@
 
    <!-- Bootstrap CSS -->
    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
    <style>
       /* === Epic Custom Navbar CSS === */
       .epics-navbar {
@@ -130,7 +130,7 @@
                      aria-expanded="false">
                      <img alt="User image"
                         src="{{ (!empty($profileData->photo)) ? url('upload/user_images/'.$profileData->photo) : url('upload/no_image.jpg') }}"
-                        class="nav-epics-pic"> My Account
+                        class="nav-epics-pic"> {{ $profileData->name }}
                   </a>
                   <div class="dropdown-menu dropdown-menu-right shadow-sm border-0">
                      <a class="dropdown-item" href="{{ route('dashboard') }}"><i class="icofont-user-alt-3 mr-2"></i> Profile</a>
@@ -222,4 +222,4 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</html>     
+</html>

@@ -65,9 +65,17 @@ class ClientController extends Controller
             'password' => $check['password'],
         ];
         if (Auth::guard('client')->attempt($data)) {
-            return redirect()->route('client.dashboard')->with('success', 'Login Successfully');
+            $notification = array(
+                'message' => 'Login Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('client.dashboard')->with($notification);
         } else {
-            return redirect()->route('client.login')->with('error', 'Invalid Creadentials');
+            $notification = array(
+                'message' => 'Invalid Credentials',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('client.login')->with($notification);
         }
     }
 
@@ -79,7 +87,11 @@ class ClientController extends Controller
     public function ClientLogout()
     {
         Auth::guard('client')->logout();
-        return redirect()->route('client.login')->with('success', 'Logout Success');
+        $notification = array(
+            'message' => 'Logout Success',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('client.login')->with($notification);
     }
 
     public function ClientForgetPassword()

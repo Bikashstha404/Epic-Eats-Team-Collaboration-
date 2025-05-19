@@ -93,7 +93,7 @@ public function SearchRestaurant(Request $request){
     $clients = Client::where('name', 'LIKE', '%' . $keyword . '%')
         ->where('status', 1)
         ->orderBy('name', 'asc')
-        ->get();
+        ->paginate(8);
 
     return view('frontend.search_restaurant', compact('clients', 'keyword'));
 }
@@ -120,6 +120,29 @@ public function SearchRestaurant(Request $request){
     return response()->json($suggestions);
 }
 
+ public function ToggleWishlist(Request $request)
+{
+    if (!Auth::check()) {
+        return response()->json(['status' => 'unauthenticated']);
+    }
+
+    $client_id = $request->client_id;
+    $user_id = Auth::id();
+
+    $existing = Wishlist::where('user_id', $user_id)->where('client_id', $client_id)->first();
+
+    if ($existing) {
+        $existing->delete();
+        return response()->json(['status' => 'removed']);
+    } else {
+        Wishlist::create([
+            'user_id' => $user_id,
+            'client_id' => $client_id,
+            'created_at' => now(),
+        ]);
+        return response()->json(['status' => 'added']);
+    }
+}
 
 
- } //
+ } 

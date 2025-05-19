@@ -71,7 +71,7 @@
 
                                     <div class="mb-3">
                                         <label for="example-text-input" class="form-label">Email</label>
-                                        <input class="form-control" name="email" type="email" value="{{ $profileData->email }}" id="example-text-input">
+                                        <input class="form-control" name="email" type="email" value="{{ $profileData->email }}" id="example-text-input" readonly>
                                     </div>
 
                                     <div class="mb-3">
@@ -82,7 +82,7 @@
                                     <div class="mb-3">
                                         <label for="example-text-input" class="form-label">City</label>
                                         <select name="city_id" class="form-select">
-                                            <option>Select</option>
+                                            <option disabled selected>Select</option>
                                             @foreach ($city as $cit)
                                             <option value="{{ $cit->id }}" {{ $cit->id == $profileData->city_id ? 'selected' : '' }}>{{ $cit->city_name }}</option>
                                             @endforeach
@@ -164,7 +164,7 @@
             reader.readAsDataURL(e.target.files['0']);
         })
     })
-    
+
     $(document).ready(function() {
         $('#locationImage').change(function(e) {
             var reader = new FileReader();
@@ -174,7 +174,6 @@
             reader.readAsDataURL(e.target.files['0']);
         })
     })
-    
 </script>
 
 

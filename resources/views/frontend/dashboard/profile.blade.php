@@ -36,7 +36,7 @@ $profileData = App\Models\User::find($id);
 
                                                     <div class="mb-3">
                                                         <label for="example-text-input" class="form-label">Email</label>
-                                                        <input class="form-control" name="email" type="email" value="{{ $profileData->email }}" id="example-text-input">
+                                                        <input class="form-control" name="email" type="email" value="{{ $profileData->email }}" id="example-text-input" readonly>
                                                     </div>
 
                                                     <div class="mb-3">
@@ -56,10 +56,10 @@ $profileData = App\Models\User::find($id);
 
                                                     <div class="mb-3">
                                                         <label for="example-text-input" class="form-label">Profile Image</label>
-                                                        <input class="form-control" name="photo" type="file" value="{{ $profileData->photo }}" id="image">
+                                                        <input class="form-control" name="photo" type="file" value="{{ $profileData->photo }}" id="image" accept="image/*">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <img id="showImage" src="{{ (!empty($profileData->photo)) ? url('upload/user_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="" class="rounded-circle p-1 bg-primary" style="width: 90px; height: 90px; object-fit: cover;">
+                                                        <img id="showImage" src="{{ (!empty($profileData->photo)) ? url('upload/user_images/'.$profileData->photo) : url('upload/no_image.jpg') }}" alt="" class="rounded-circle p-1 bg-primary" style="width: 90px; height: 90px; object-fit: cover;" >
                                                     </div>
                                                     <div class="mt-4">
                                                         <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>

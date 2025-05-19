@@ -127,6 +127,7 @@
                         </h5>
                     </div>
 
+<<<<<<< HEAD
                    <!-- Search Form -->
          <!-- Search Form -->
          <form action="{{ route('restaurant.search') }}" method="GET">
@@ -139,6 +140,9 @@
         </div>
     </div>
 </form>
+=======
+               
+                 
 
 
 

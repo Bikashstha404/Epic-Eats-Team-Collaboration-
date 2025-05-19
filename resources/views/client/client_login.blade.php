@@ -164,6 +164,18 @@
          color: #FF6B35;
       }
 
+      .error-message {
+         color: #FF3E3E;
+         font-size: 14px;
+         margin-top: 5px;
+         display: flex;
+         align-items: center;
+      }
+
+      .error-message i {
+         margin-right: 5px;
+      }
+
       .image-container img {
          margin-top: 15vh;
          max-width: 100%;
@@ -187,6 +199,11 @@
 
       .form-group.position-relative {
          position: relative;
+      }
+
+      .input-container {
+         position: relative;
+         width: 100%;
       }
    </style>
 </head>
@@ -213,8 +230,10 @@
 
                   <!-- Password Field -->
                   <div class="form-group position-relative">
-                     <input type="password" name="password" id="password" class="form-control input-with-icon @error('password') error @enderror" placeholder="Password">
-                     <span class="eye-icon"><i class="fas fa-eye" id="togglePassword"></i></span>
+                     <div class="input-container">
+                        <input type="password" name="password" id="password" class="form-control input-with-icon @error('password') error @enderror" placeholder="Password">
+                        <span class="eye-icon"><i class="fas fa-eye" id="togglePassword"></i></span>
+                     </div>
                      @error('password')
                      <div class="error-message"><i class="fas fa-exclamation-circle"></i> {{ $message }}</div>
                      @enderror
@@ -249,6 +268,42 @@
          this.classList.toggle("fa-eye-slash");
       });
    </script>
+
+   <!-- Load jQuery First -->
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+   <!-- Load Toastr CSS & JS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+   <!-- Show Toastr Message -->
+   <script>
+      @if(Session::has('message'))
+      var type = "{{ Session::get('alert-type', 'info') }}";
+      var message = @json(Session::get('message'));
+      console.log("Type:", type);
+      console.log("Message:", message);
+
+      switch (type) {
+         case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+         case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+         case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+         case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+      }
+      @endif
+   </script>
+
 </body>
 
 </html>
